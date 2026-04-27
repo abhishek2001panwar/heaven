@@ -195,11 +195,12 @@
       }
       .nav-logo {
         font-size: 18px;
-        font-weight: 300;
+        font-weight: 400;
         letter-spacing: 0.32em;
         text-transform: uppercase;
         color: var(--fg);
         text-decoration: none;
+
       }
       .nav-links {
         display: flex;
@@ -501,86 +502,6 @@
         to {
           opacity: 0;
         }
-      }
-
-      /* ══════════════════════════════════════════════
-         NEW: FULL-BLEED SCROLL PARALLAX MOMENTS
-      ══════════════════════════════════════════════ */
-      #moments {
-        background: #000;
-      }
-      .moment-block {
-        position: relative;
-        height: 100vh;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-      }
-      .moment-img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        will-change: transform;
-        filter: saturate(0.28) brightness(0.7) contrast(1.12);
-      }
-      .moment-vignette {
-        position: absolute;
-        inset: 0;
-        z-index: 2;
-        background: linear-gradient(
-          to right,
-          rgba(0, 0, 0, 0.65) 0%,
-          transparent 55%
-        );
-      }
-      .moment-content {
-        position: relative;
-        z-index: 3;
-        padding: 0 72px;
-        max-width: 580px;
-      }
-      .moment-num {
-        font-size: 8px;
-        letter-spacing: 0.42em;
-        text-transform: uppercase;
-        color: rgba(240, 237, 232, 0.18);
-        font-family: monospace;
-        margin-bottom: 20px;
-        display: block;
-      }
-      .moment-title {
-        font-size: clamp(42px, 7vw, 100px);
-        font-weight: 300;
-        line-height: 0.9;
-        letter-spacing: -0.02em;
-        color: rgba(240, 237, 232, 0.9);
-      }
-      .moment-title em {
-        font-style: italic;
-        color: var(--silver);
-      }
-      .moment-body {
-        font-size: 12px;
-        line-height: 1.9;
-        color: rgba(240, 237, 232, 0.38);
-        margin-top: 22px;
-        max-width: 300px;
-      }
-      .moment-line {
-        position: absolute;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        width: 1px;
-        z-index: 3;
-        background: linear-gradient(
-          to bottom,
-          transparent,
-          rgba(200, 200, 200, 0.15),
-          transparent
-        );
       }
 
       /* ══════════════════════════════════════════════
@@ -1129,91 +1050,6 @@
         margin-top: 3px;
       }
 
-      /* ─── ABOUT ─── */
-      #about {
-        padding: 130px 56px;
-        display: grid;
-        grid-template-columns: 1fr 1.05fr;
-        gap: 90px;
-        align-items: center;
-        background: var(--mid);
-      }
-      .ab-label {
-        font-size: 9px;
-        letter-spacing: 0.28em;
-        text-transform: uppercase;
-        color: var(--silver);
-        margin-bottom: 24px;
-      }
-      .ab-title {
-        font-size: clamp(34px, 4.5vw, 58px);
-        font-weight: 300;
-        line-height: 1.15;
-        letter-spacing: -0.01em;
-      }
-      .ab-title em {
-        font-style: italic;
-        color: var(--silver);
-      }
-      .ab-body {
-        margin-top: 24px;
-        font-size: 13px;
-        line-height: 1.95;
-        color: rgba(240, 237, 232, 0.45);
-        max-width: 400px;
-      }
-      .ab-cta {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        margin-top: 36px;
-        font-size: 9px;
-        letter-spacing: 0.25em;
-        text-transform: uppercase;
-        color: var(--fg);
-        text-decoration: none;
-        border-bottom: 1px solid rgba(240, 237, 232, 0.15);
-        padding-bottom: 5px;
-        transition:
-          color 0.3s,
-          border-color 0.3s;
-      }
-      .ab-cta:hover {
-        color: var(--silver);
-        border-color: var(--silver);
-      }
-      .ab-cta svg {
-        transition: transform 0.3s;
-      }
-      .ab-cta:hover svg {
-        transform: translateX(5px);
-      }
-      .ab-right {
-        position: relative;
-      }
-      .ab-img {
-        width: 100%;
-        aspect-ratio: 4/5;
-        object-fit: cover;
-        filter: saturate(0.35) contrast(1.1);
-      }
-      .ab-frame {
-        position: absolute;
-        top: -16px;
-        right: -16px;
-        width: 100px;
-        height: 100px;
-        border: 1px solid rgba(200, 200, 200, 0.25);
-        z-index: -1;
-      }
-      .ab-caption {
-        margin-top: 12px;
-        font-size: 9px;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: rgba(240, 237, 232, 0.25);
-      }
-
       /* ─── CONTACT ─── */
       #contact {
         padding: 130px 56px;
@@ -1316,449 +1152,6 @@
         transform: none;
       }
 
-      /* ─── STORY ─── */
-      #story {
-        background: #000;
-      }
-      .chapter {
-        position: relative;
-        height: 100vh;
-        overflow: hidden;
-        display: flex;
-        align-items: flex-end;
-      }
-      .ch-img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transform-origin: center;
-        will-change: transform;
-      }
-      .tone-warm {
-        filter: saturate(0.35) brightness(0.75) sepia(0.08) contrast(1.08);
-      }
-      .tone-cold {
-        filter: saturate(0.25) brightness(0.78) contrast(1.15);
-      }
-      .tone-noir {
-        filter: saturate(0.1) brightness(0.62) contrast(1.28);
-      }
-      .tone-golden {
-        filter: saturate(0.3) brightness(0.72) sepia(0.05) contrast(1.08);
-      }
-      .tone-faded {
-        filter: saturate(0.2) brightness(0.82) contrast(0.9);
-      }
-      .ch-vignette {
-        position: absolute;
-        inset: 0;
-        z-index: 2;
-        pointer-events: none;
-        background:
-          radial-gradient(
-            ellipse 80% 80% at 50% 50%,
-            transparent 35%,
-            rgba(0, 0, 0, 0.6) 100%
-          ),
-          linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 50%);
-      }
-      .ch-num {
-        position: absolute;
-        top: 44px;
-        left: 56px;
-        z-index: 10;
-        font-size: 9px;
-        letter-spacing: 0.45em;
-        text-transform: uppercase;
-        color: rgba(240, 237, 232, 0.15);
-        font-family: monospace;
-      }
-      .ch-word {
-        position: absolute;
-        bottom: 40px;
-        left: 50px;
-        z-index: 5;
-        font-size: clamp(58px, 10vw, 130px);
-        font-weight: 300;
-        letter-spacing: -0.02em;
-        color: rgba(255, 255, 255, 0.05);
-        mix-blend-mode: screen;
-        line-height: 1;
-        pointer-events: none;
-        user-select: none;
-      }
-      .ch-word em {
-        font-style: italic;
-        color: rgba(200, 200, 200, 0.08);
-      }
-      .ch-dots {
-        position: absolute;
-        bottom: 50px;
-        right: 50px;
-        z-index: 10;
-        display: flex;
-        gap: 7px;
-        align-items: center;
-      }
-      .ch-dot {
-        width: 3px;
-        height: 3px;
-        border-radius: 50%;
-        background: rgba(240, 237, 232, 0.2);
-      }
-      .ch-dot.active {
-        width: 5px;
-        height: 5px;
-        background: var(--silver);
-        opacity: 1;
-      }
-      .ch-line {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 0;
-        height: 1px;
-        background: linear-gradient(to right, var(--silver), transparent);
-        z-index: 10;
-        transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .chapter.entered .ch-line {
-        width: 38%;
-      }
-      .fx-lightleak {
-        position: absolute;
-        inset: 0;
-        z-index: 3;
-        pointer-events: none;
-        background: linear-gradient(
-          125deg,
-          rgba(255, 255, 255, 0) 0%,
-          rgba(255, 255, 255, 0.1) 35%,
-          rgba(220, 220, 220, 0.07) 52%,
-          transparent 100%
-        );
-        animation: leakDrift 9s ease-in-out infinite alternate;
-        transform-origin: top left;
-      }
-      @keyframes leakDrift {
-        0% {
-          opacity: 0;
-          transform: scale(1.02) rotate(-4deg);
-        }
-        15% {
-          opacity: 1;
-        }
-        85% {
-          opacity: 0.5;
-        }
-        100% {
-          opacity: 0;
-          transform: scale(1.1) rotate(3deg);
-        }
-      }
-      .fx-aperture {
-        position: absolute;
-        inset: 0;
-        z-index: 3;
-        pointer-events: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .ap-ring {
-        position: absolute;
-        border-radius: 50%;
-        border: 1px solid rgba(200, 200, 200, 0.18);
-        animation: apOpen 5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      }
-      .ap-ring:nth-child(1) {
-        width: min(68vmin, 540px);
-        height: min(68vmin, 540px);
-      }
-      .ap-ring:nth-child(2) {
-        width: min(48vmin, 380px);
-        height: min(48vmin, 380px);
-        border-color: rgba(200, 200, 200, 0.12);
-        animation-delay: 0.25s;
-        animation-duration: 5.5s;
-      }
-      .ap-ring:nth-child(3) {
-        width: min(28vmin, 220px);
-        height: min(28vmin, 220px);
-        border-color: rgba(200, 200, 200, 0.08);
-        animation-delay: 0.5s;
-        animation-duration: 6s;
-      }
-      .ap-dot {
-        width: 4px;
-        height: 4px;
-        border-radius: 50%;
-        background: var(--silver);
-        box-shadow: 0 0 14px 4px rgba(200, 200, 200, 0.35);
-        animation: apDot 3s ease-in-out infinite;
-      }
-      @keyframes apOpen {
-        0% {
-          transform: scale(0) rotate(-200deg);
-          opacity: 0;
-        }
-        60% {
-          opacity: 1;
-        }
-        100% {
-          transform: scale(1) rotate(0deg);
-          opacity: 0.5;
-        }
-      }
-      @keyframes apDot {
-        0%,
-        100% {
-          opacity: 0.4;
-          transform: scale(1);
-        }
-        50% {
-          opacity: 1;
-          transform: scale(2);
-        }
-      }
-      .fx-scanlines {
-        position: absolute;
-        inset: 0;
-        z-index: 3;
-        pointer-events: none;
-        background: repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 2px,
-          rgba(0, 0, 0, 0.07) 2px,
-          rgba(0, 0, 0, 0.07) 4px
-        );
-      }
-      .fx-scan-beam {
-        position: absolute;
-        inset: 0;
-        z-index: 4;
-        pointer-events: none;
-        background: linear-gradient(
-          to bottom,
-          transparent 0%,
-          rgba(255, 255, 255, 0.05) 48%,
-          rgba(255, 255, 255, 0.07) 50%,
-          rgba(255, 255, 255, 0.05) 52%,
-          transparent 100%
-        );
-        background-size: 100% 200%;
-        animation: scanBeam 5s ease-in-out infinite;
-      }
-      .fx-static {
-        position: absolute;
-        inset: 0;
-        z-index: 3;
-        pointer-events: none;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)' opacity='0.055'/%3E%3C/svg%3E");
-        animation: staticShift 0.08s steps(1) infinite;
-      }
-      @keyframes scanBeam {
-        0% {
-          background-position: 0 -100%;
-        }
-        100% {
-          background-position: 0 200%;
-        }
-      }
-      @keyframes staticShift {
-        0% {
-          transform: translate(0, 0);
-        }
-        25% {
-          transform: translate(-2px, 1px);
-        }
-        50% {
-          transform: translate(1px, -1px);
-        }
-        75% {
-          transform: translate(-1px, 2px);
-        }
-        100% {
-          transform: translate(2px, -2px);
-        }
-      }
-      .fx-dust {
-        position: absolute;
-        inset: 0;
-        z-index: 3;
-        pointer-events: none;
-        overflow: hidden;
-      }
-      .fx-double {
-        position: absolute;
-        inset: 0;
-        z-index: 3;
-        pointer-events: none;
-        background-image: url("https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1200&q=55");
-        background-size: cover;
-        background-position: center;
-        mix-blend-mode: screen;
-        animation: dblExp 12s ease-in-out infinite alternate;
-      }
-      @keyframes dblExp {
-        0% {
-          opacity: 0;
-          transform: scale(1.06) translateX(0);
-        }
-        25% {
-          opacity: 0.08;
-        }
-        75% {
-          opacity: 0.13;
-        }
-        100% {
-          opacity: 0.04;
-          transform: scale(1) translateX(-24px);
-        }
-      }
-      .fx-burn {
-        position: absolute;
-        inset: 0;
-        z-index: 4;
-        pointer-events: none;
-        background:
-          radial-gradient(
-            circle at 0% 0%,
-            rgba(255, 255, 255, 0.1) 0%,
-            transparent 26%
-          ),
-          radial-gradient(
-            circle at 100% 100%,
-            rgba(255, 255, 255, 0.07) 0%,
-            transparent 20%
-          );
-        animation: burnPulse 6s ease-in-out infinite alternate;
-      }
-      @keyframes burnPulse {
-        0% {
-          opacity: 0.5;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
-      .chapter.shutter::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: 20;
-        background: rgba(240, 237, 232, 0.45);
-        animation: shutterB 0.18s ease-out forwards;
-      }
-      @keyframes shutterB {
-        0% {
-          opacity: 1;
-        }
-        100% {
-          opacity: 0;
-        }
-      }
-      .ch-divider {
-        height: 1px;
-        background: linear-gradient(
-          to right,
-          transparent,
-          rgba(200, 200, 200, 0.15),
-          transparent
-        );
-      }
-
-      /* ─── FILM STRIP ─── */
-      #filmstrip {
-        background: #000;
-        overflow: hidden;
-        position: relative;
-        border-top: 1px solid var(--line);
-      }
-      .film-perf {
-        display: flex;
-        padding: 9px 0;
-        border-bottom: 1px solid rgba(240, 237, 232, 0.06);
-      }
-      .film-perf.btm {
-        border-bottom: none;
-        border-top: 1px solid rgba(240, 237, 232, 0.06);
-      }
-      .film-hole {
-        width: 20px;
-        height: 14px;
-        border: 1px solid rgba(240, 237, 232, 0.12);
-        border-radius: 3px;
-        margin: 0 7px;
-        flex-shrink: 0;
-        background: rgba(0, 0, 0, 0.5);
-      }
-      .film-track {
-        display: flex;
-        gap: 3px;
-        padding: 14px 0;
-        animation: filmRoll 28s linear infinite;
-      }
-      #filmstrip:hover .film-track {
-        animation-play-state: paused;
-      }
-      .film-frame {
-        flex-shrink: 0;
-        width: 250px;
-        height: 190px;
-        position: relative;
-        overflow: hidden;
-        border: 1px solid rgba(240, 237, 232, 0.04);
-        cursor: none;
-      }
-      .film-frame img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: saturate(0.2) brightness(0.6) contrast(1.15) sepia(0.1);
-        transition:
-          filter 0.8s,
-          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .film-frame:hover img {
-        filter: saturate(0.55) brightness(0.8);
-        transform: scale(1.06);
-      }
-      .film-frame-num {
-        position: absolute;
-        bottom: 7px;
-        right: 9px;
-        font-size: 7px;
-        letter-spacing: 0.2em;
-        color: rgba(240, 237, 232, 0.18);
-        font-family: monospace;
-      }
-      .film-frame::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: 2;
-        pointer-events: none;
-        background: repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 3px,
-          rgba(0, 0, 0, 0.04) 3px,
-          rgba(0, 0, 0, 0.04) 6px
-        );
-      }
-      @keyframes filmRoll {
-        from {
-          transform: translateX(0);
-        }
-        to {
-          transform: translateX(-50%);
-        }
-      }
-
       /* ─── COUPLE TEXT ─── */
       #couple-text {
         position: relative;
@@ -1776,7 +1169,7 @@
         align-items: center;
         justify-content: center;
         pointer-events: none;
-        z-index: 1;
+        z-index: 4;
         flex-direction: column;
         gap: 0;
       }
@@ -1785,19 +1178,19 @@
         font-weight: 300;
         letter-spacing: -0.02em;
         line-height: 0.88;
-        color: transparent;
-        -webkit-text-stroke: 1px rgba(240, 237, 232, 0.18);
+        color: rgba(240, 237, 232, 0.12);
+        -webkit-text-stroke: 1px rgba(240, 237, 232, 0.45);
         text-transform: uppercase;
         white-space: nowrap;
         user-select: none;
       }
       .ct2-stroke-line.italic {
         font-style: italic;
-        -webkit-text-stroke: 1px rgba(240, 237, 232, 0.1);
+        -webkit-text-stroke: 1px rgba(240, 237, 232, 0.32);
       }
       .ct2-imgs {
         position: relative;
-        z-index: 2;
+        z-index: 1;
         display: flex;
         align-items: flex-end;
         gap: 0;
@@ -1867,8 +1260,8 @@
       }
       .ct2-stroke-line span {
         display: inline-block;
-        opacity: 0;
-        transform: translateY(20px);
+        opacity: 1;
+        transform: none;
         transition:
           opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
           transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1897,101 +1290,6 @@
       }
       .ct2-stroke-line span:nth-child(8) {
         transition-delay: 0.42s;
-      }
-
-      /* ─── THREE LENS ─── */
-      #three-lens {
-        position: relative;
-        height: 100vh;
-        background: #000;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      #three-canvas {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        display: block;
-      }
-      .three-copy {
-        position: relative;
-        z-index: 2;
-        text-align: center;
-        pointer-events: none;
-      }
-      .three-copy-label {
-        font-size: 8px;
-        letter-spacing: 0.45em;
-        text-transform: uppercase;
-        color: rgba(240, 237, 232, 0.25);
-        margin-bottom: 20px;
-      }
-      .three-copy-title {
-        font-size: clamp(40px, 6vw, 80px);
-        font-weight: 300;
-        font-style: italic;
-        color: rgba(240, 237, 232, 0.85);
-        line-height: 1.1;
-        letter-spacing: -0.01em;
-        opacity: 0;
-        animation: fadeUp3 1s 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      }
-      .three-copy-sub {
-        margin-top: 14px;
-        font-size: 9px;
-        letter-spacing: 0.28em;
-        text-transform: uppercase;
-        color: rgba(240, 237, 232, 0.2);
-        opacity: 0;
-        animation: fadeUp3 0.9s 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      }
-      @keyframes fadeUp3 {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: none;
-        }
-      }
-
-      /* ─── GLSL EXPOSURE ─── */
-      #glsl-exposure {
-        position: relative;
-        height: 100vh;
-        background: #000;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      #exp-canvas {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        display: block;
-      }
-      .exp-copy {
-        position: relative;
-        z-index: 2;
-        text-align: center;
-        pointer-events: none;
-      }
-      .exp-title {
-        font-size: clamp(32px, 5vw, 64px);
-        font-weight: 300;
-        line-height: 1.1;
-        color: rgba(240, 237, 232, 0.9);
-        letter-spacing: -0.01em;
-      }
-      .exp-title em {
-        font-style: italic;
-        color: var(--silver);
       }
 
       /* ─── COUPLE WIDE ─── */
@@ -2367,11 +1665,6 @@
         #srv-img-card {
           display: none;
         }
-        #about {
-          grid-template-columns: 1fr;
-          padding: 70px 22px;
-          gap: 44px;
-        }
         #contact,
         #credits {
           padding: 70px 22px;
@@ -2381,9 +1674,6 @@
           flex-direction: column;
           gap: 5px;
           text-align: center;
-        }
-        .ch-num {
-          left: 22px;
         }
         .cred-meta {
           flex-direction: column;
@@ -2420,9 +1710,6 @@
           gap: 10px;
           align-items: flex-start;
         }
-        .moment-content {
-          padding: 0 28px;
-        }
       }
     </style>
   </head>
@@ -2445,11 +1732,10 @@
 
     <!-- NAV -->
     <nav>
-      <a href="#" class="nav-logo">House of Heaven</a>
+      <a href="#" class="nav-logo">House of  Heaven</a>
       <ul class="nav-links">
-        <li><a href="#services">Services</a></li>
+        <li><a href="#services">Our couples</a></li>
         <li><a href="#gallery">Work</a></li>
-        <li><a href="#about">Studio</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -2460,15 +1746,15 @@
         <div class="panel">
           <img
             class="panel-img"
-            src="./images/heronew3.png"
+            src="./images/heronew.png"
             alt=""
           />
           <div class="panel-vignette"></div>
-          <span class="p-num">01</span>
+          <!-- <span class="p-num">01</span>
           <div class="p-label">
             <span class="p-cat">Landscape</span>
             <div class="p-title">Into the Mist</div>
-          </div>
+          </div> -->
         </div>
         <div class="panel">
           <img
@@ -2477,11 +1763,11 @@
             alt=""
           />
           <div class="panel-vignette"></div>
-          <span class="p-num">02</span>
+          <!-- <span class="p-num">02</span>
           <div class="p-label">
             <span class="p-cat">Nature</span>
             <div class="p-title">Golden Hour</div>
-          </div>
+          </div> -->
         </div>
         <div class="panel">
           <img
@@ -2490,11 +1776,11 @@
             alt=""
           />
           <div class="panel-vignette"></div>
-          <span class="p-num">03</span>
+          <!-- <span class="p-num">03</span>
           <div class="p-label">
             <span class="p-cat">Seascape</span>
             <div class="p-title">Still Waters</div>
-          </div>
+          </div> -->
         </div>
       </div>
       <canvas id="gl-canvas"></canvas>
@@ -2522,30 +1808,10 @@
           data-srv="2"
           alt=""
         />
-        <!-- <img
-          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=640&q=80"
-          data-srv="3"
-          alt=""
-        />
-        <img
-          src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=640&q=80"
-          data-srv="4"
-          alt=""
-        />
-        <img
-          src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=640&q=80"
-          data-srv="5"
-          alt=""
-        />
-        <img
-          src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=640&q=80"
-          data-srv="6"
-          alt=""
-        /> -->
       </div>
       <div class="srv-header rv">
-        <div class="srv-label">What we do</div>
-        <div class="srv-head-title">Our<br /><em>couples</em></div>
+        <div class="srv-label"></div>
+        <div class="srv-head-title">Our<br />couples</div>
       </div>
       <div class="srv-list">
         <div class="srv-row rv" data-srv="0">
@@ -2560,7 +1826,7 @@
               />
             </svg>
           </div>
-          <span class="srv-tag">Studio · Editorial · Landscape</span>
+          <!-- <span class="srv-tag">Studio · Editorial · Landscape</span> -->
         </div>
         <div class="srv-row rv" data-srv="1" style="transition-delay: 0.05s">
           <span class="srv-num">/02</span
@@ -2574,7 +1840,7 @@
               />
             </svg>
           </div>
-          <span class="srv-tag">Cinematic · Documentary · Reel</span>
+            <!-- <span class="srv-tag">Cinematic · Documentary · Reel</span> -->
         </div>
         <div class="srv-row rv" data-srv="2" style="transition-delay: 0.1s">
           <span class="srv-num">/03</span
@@ -2588,64 +1854,8 @@
               />
             </svg>
           </div>
-          <span class="srv-tag">Concept · Visual Identity · Campaign</span>
+          <!-- <span class="srv-tag">Concept · Visual Identity · Campaign</span> -->
         </div>
-        <!-- <div class="srv-row rv" data-srv="3" style="transition-delay: 0.15s">
-          <span class="srv-num">/04</span
-          ><span class="srv-name">Portrait Sessions</span>
-          <div class="srv-arrow">
-            Explore<svg viewBox="0 0 28 28" fill="none">
-              <path
-                d="M8 20L20 8M20 8H12M20 8V16"
-                stroke="currentColor"
-                stroke-width="1.2"
-              />
-            </svg>
-          </div>
-          <span class="srv-tag">Individual · Brand · Editorial</span>
-        </div>
-        <div class="srv-row rv" data-srv="4" style="transition-delay: 0.2s">
-          <span class="srv-num">/05</span
-          ><span class="srv-name">Motion Graphics</span>
-          <div class="srv-arrow">
-            Explore<svg viewBox="0 0 28 28" fill="none">
-              <path
-                d="M8 20L20 8M20 8H12M20 8V16"
-                stroke="currentColor"
-                stroke-width="1.2"
-              />
-            </svg>
-          </div>
-          <span class="srv-tag">3D · Animation · Title Sequences</span>
-        </div>
-        <div class="srv-row rv" data-srv="5" style="transition-delay: 0.25s">
-          <span class="srv-num">/06</span
-          ><span class="srv-name">Brand Identity</span>
-          <div class="srv-arrow">
-            Explore<svg viewBox="0 0 28 28" fill="none">
-              <path
-                d="M8 20L20 8M20 8H12M20 8V16"
-                stroke="currentColor"
-                stroke-width="1.2"
-              />
-            </svg>
-          </div>
-          <span class="srv-tag">Logo · Systems · Guidelines</span>
-        </div>
-        <div class="srv-row rv" data-srv="6" style="transition-delay: 0.3s">
-          <span class="srv-num">/07</span
-          ><span class="srv-name">Web &amp; Digital</span>
-          <div class="srv-arrow">
-            Explore<svg viewBox="0 0 28 28" fill="none">
-              <path
-                d="M8 20L20 8M20 8H12M20 8V16"
-                stroke="currentColor"
-                stroke-width="1.2"
-              />
-            </svg>
-          </div>
-          <span class="srv-tag">UI · Experience · Motion</span>
-        </div> -->
       </div>
     </section>
     <!-- MARQUEE -->
@@ -2668,141 +1878,128 @@
       </div>
     </div>
 
+    
+    <!-- COUPLE TEXT -->
+    <section id="couple-text">
+      <div class="ct2-stroke-wrap">
+        <div class="ct2-stroke-line" id="sl1">
+          <span>H</span><span>E</span><span>A</span><span>V</span><span>E</span
+          ><span>N</span>
+        </div>
+        <div class="ct2-stroke-line italic" id="sl2">
+          <span>f</span><span>r</span><span>a</span><span>m</span><span>e</span
+          ><span>s</span>
+        </div>
+      </div>
+      <div class="ct2-imgs">
+        <div class="ct2-img">
+          <img
+            src="../images/overlay1.png"
+            alt=""
+          />
+        </div>
+        <div class="ct2-img">
+          <img
+            src="../images/overlay2.png"
+            alt=""
+          />
+        </div>
+      </div>
+     
+    </section>
+
     <!-- ══ NEW: TAPE DRAG SCROLL ══ -->
     <section id="tape-scroll">
       <div class="tape-inner" id="tapeInner">
         <div class="tape-card">
           <img
-            src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=700&q=80"
+            src="../images/drag1.png"
             alt=""
           />
-          <div class="tape-card-info">
+          <!-- <div class="tape-card-info">
             <div class="tape-card-title">Vast Wilderness</div>
             <div class="tape-card-meta">Landscape · 2024</div>
-          </div>
+          </div> -->
         </div>
         <div class="tape-card">
           <img
-            src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=700&q=80"
+            src="../images/drag2.png"
             alt=""
           />
-          <div class="tape-card-info">
+          <!-- <div class="tape-card-info">
             <div class="tape-card-title">Bloom</div>
             <div class="tape-card-meta">Macro · 2024</div>
-          </div>
+          </div> -->
         </div>
         <div class="tape-card">
           <img
-            src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=700&q=80"
+            src="../images/drag3.png"
             alt=""
           />
-          <div class="tape-card-info">
+            alt=""
+          />
+          <!-- <div class="tape-card-info">
             <div class="tape-card-title">City Fog</div>
             <div class="tape-card-meta">Urban · 2023</div>
-          </div>
+          </div> -->
         </div>
         <div class="tape-card">
           <img
-            src="https://images.unsplash.com/photo-1444464666168-49d633b86797?w=700&q=80"
+            src="../images/drag4.png"
             alt=""
           />
-          <div class="tape-card-info">
+            alt=""
+          />
+          <!-- <div class="tape-card-info">
             <div class="tape-card-title">Wingspan</div>
             <div class="tape-card-meta">Nature · 2023</div>
-          </div>
+          </div> -->
         </div>
         <div class="tape-card">
           <img
-            src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=700&q=80"
+            src="../images/drag5.png"
+            alt=""
             alt=""
           />
-          <div class="tape-card-info">
+          <!-- <div class="tape-card-info">
             <div class="tape-card-title">Still Lake</div>
             <div class="tape-card-meta">Landscape · 2023</div>
-          </div>
+          </div> -->
         </div>
         <div class="tape-card">
           <img
-            src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=700&q=80"
+            src="../images/drag6.png"
             alt=""
           />
-          <div class="tape-card-info">
+          <!-- <div class="tape-card-info">
             <div class="tape-card-title">Granite Peak</div>
             <div class="tape-card-meta">Mountain · 2022</div>
-          </div>
+          </div> -->
         </div>
         <div class="tape-card">
           <img
-            src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=700&q=80"
+            src="../images/drag7.png"
             alt=""
           />
-          <div class="tape-card-info">
+          <!-- <div class="tape-card-info">
             <div class="tape-card-title">Valley Floor</div>
             <div class="tape-card-meta">Aerial · 2022</div>
-          </div>
+          </div> -->
         </div>
         <div class="tape-card">
           <img
-            src="https://images.unsplash.com/photo-1439853949212-36589f9f2ae8?w=700&q=80"
+            src="../images/drag8.png"
             alt=""
           />
-          <div class="tape-card-info">
+            alt=""
+          />
+          <!-- <div class="tape-card-info">
             <div class="tape-card-title">Dusk Shore</div>
             <div class="tape-card-meta">Seascape · 2022</div>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="tape-drag-hint">← drag to explore →</div>
-    </section>
-
-    <!-- ══ NEW: CINEMATIC MOMENTS ══ -->
-    <section id="moments">
-      <!-- <div class="moment-block">
-        <img
-          class="moment-img"
-          data-par=".3"
-          src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1600&q=85"
-          alt=""
-        />
-        <div class="moment-vignette"></div>
-        <div class="moment-content rv">
-          <span class="moment-num">M · 001</span>
-          <div class="moment-title">The Art<br />of <em>Seeing</em></div>
-          <p class="moment-body">
-            Every photograph begins before the shutter opens — in the patience
-            of waiting, in the act of truly looking.
-          </p>
-        </div>
-        <div class="moment-line"></div>
-      </div>
-      <div class="moment-block">
-        <img
-          class="moment-img"
-          data-par=".22"
-          src="../images/seeing.png"
-          alt=""
-        />
-        <div class="moment-vignette"></div>
-        <div class="moment-content rv">
-          <span class="moment-num">M · 002</span>
-          <div class="moment-title">Light<br /><em>Remembered</em></div>
-          <p class="moment-body">
-            Film captures what memory cannot hold — the quality of afternoon,
-            the weight of shadow.
-          </p>
-        </div>
-        <div class="moment-line"></div>
-      </div>
-      <div class="moment-block">
-        <img
-          class="moment-img"
-          data-par=".18"
-          src="../images/seeing1.png"
-          alt=""
-        />
-        <div class="moment-vignette"></div>
-        
-      </div> -->
     </section>
 
     <!-- ══ NEW: PHOTO TICKER (two rows) ══ -->
@@ -2834,8 +2031,8 @@
     <!-- ══ NEW: PHOTO GRID ══ -->
     <section id="photo-grid">
       <div class="pg-header rv">
-        <div class="pg-label">Portfolio — Selected Works</div>
-        <div class="pg-title">The Archive</div>
+        <div class="pg-label">Portfolio </div>
+        <div class="pg-title">Selected Work</div>
       </div>
       <div class="pg-grid">
         <div class="pg-item">
@@ -2843,32 +2040,32 @@
             src="../images/seeing.png"
             alt=""
           />
-          <div class="pg-item-tag">
+          <!-- <div class="pg-item-tag">
             <div class="pg-item-tag-title">Vast Wilderness</div>
             <div class="pg-item-tag-cat">Landscape · 2024</div>
-          </div>
+          </div> -->
         </div>
         <div class="pg-item" style="transition-delay: 0.07s">
           <img
             src="../images/seeing1.png"
             alt=""
           />
-          <div class="pg-item-tag">
+          <!-- <div class="pg-item-tag">
             <div class="pg-item-tag-title">Solitude</div>
             <div class="pg-item-tag-cat">Portrait · 2024</div>
-          </div>
+          </div> -->
         </div>
         <div class="pg-item" style="transition-delay: 0.14s">
           <img
             src="../images/hero1.png"
             alt=""
           />
-          <div class="pg-item-tag">
+          <!-- <div class="pg-item-tag">
             <div class="pg-item-tag-title">City Fog</div>
             <div class="pg-item-tag-cat">Urban · 2023</div>
-          </div>
+          </div> -->
         </div>
-        <div class="pg-item" style="transition-delay: 0.21s">
+        <!-- <div class="pg-item" style="transition-delay: 0.21s">
           <img
             src="../images/hero3.png"
             alt=""
@@ -2877,56 +2074,56 @@
             <div class="pg-item-tag-title">Horizon</div>
             <div class="pg-item-tag-cat">Seascape · 2023</div>
           </div>
-        </div>
+        </div> -->
         <div class="pg-item" style="transition-delay: 0.28s">
           <img
             src="../images/hero2.png"
             alt=""
           />
-          <div class="pg-item-tag">
+          <!-- <div class="pg-item-tag">
             <div class="pg-item-tag-title">First Light</div>
             <div class="pg-item-tag-cat">Nature · 2022</div>
-          </div>
+          </div> -->
         </div>
         <div class="pg-item" style="transition-delay: 0.35s">
           <img
-            src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=600&q=80"
+            src="../images/random1.png"
             alt=""
           />
-          <div class="pg-item-tag">
+          <!-- <div class="pg-item-tag">
             <div class="pg-item-tag-title">Bloom</div>
             <div class="pg-item-tag-cat">Macro · 2022</div>
-          </div>
+          </div> -->
         </div>
         <div class="pg-item" style="transition-delay: 0.42s">
           <img
-            src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&q=80"
+            src="../images/random2.png"
             alt=""
           />
-          <div class="pg-item-tag">
+          <!-- <div class="pg-item-tag">
             <div class="pg-item-tag-title">Still Lake</div>
             <div class="pg-item-tag-cat">Landscape · 2022</div>
-          </div>
+          </div> -->
         </div>
         <div class="pg-item" style="transition-delay: 0.49s">
           <img
-            src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=600&q=80"
+            src=""
             alt=""
           />
-          <div class="pg-item-tag">
+          <!-- <div class="pg-item-tag">
             <div class="pg-item-tag-title">Granite Peak</div>
             <div class="pg-item-tag-cat">Mountain · 2022</div>
-          </div>
+          </div> -->
         </div>
         <div class="pg-item" style="transition-delay: 0.56s">
           <img
-            src="https://images.unsplash.com/photo-1444464666168-49d633b86797?w=600&q=80"
+            src=""
             alt=""
           />
-          <div class="pg-item-tag">
+          <!-- <div class="pg-item-tag">
             <div class="pg-item-tag-title">Wingspan</div>
             <div class="pg-item-tag-cat">Wildlife · 2021</div>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
@@ -2938,8 +2135,8 @@
     <div id="gallery" style="height: 270vh">
       <div class="g-sticky" id="gSticky">
         <div class="g-head rv">
-          <div class="g-head-label">Selected Work — 2022–2024</div>
-          <div class="g-head-title">A body of work<br />in quiet light.</div>
+          <div class="g-head-label">Gallery</div>
+          <div class="g-head-title"> Where light meets emotion,<br />and every frame tells a story.</div>
         </div>
         <div class="g-track" id="gTrack">
           <div style="flex-shrink: 0; width: 230px"></div>
@@ -2948,112 +2145,75 @@
               src="../images/portrait1.png"
               alt=""
             />
-            <div class="g-card-over">
+            <!-- <div class="g-card-over">
               <div class="g-card-title">Autumn Reverie</div>
               <div class="g-card-sub">Landscape · 2024</div>
-            </div>
+            </div> -->
           </div>
           <div class="g-card">
             <img
               src="../images/portrait2.png"
               alt=""
             />
-            <div class="g-card-over">
+            <!-- <div class="g-card-over">
               <div class="g-card-title">Solitude</div>
               <div class="g-card-sub">Portrait · 2024</div>
-            </div>
+            </div> -->
           </div>
           <div class="g-card">
             <img
               src="../images/portrait3.png"
               alt=""
             />
-            <div class="g-card-over">
+            <!-- <div class="g-card-over">
               <div class="g-card-title">City Fog</div>
               <div class="g-card-sub">Urban · 2023</div>
-            </div>
+            </div> -->
           </div>
           <div class="g-card">
             <img
               src="../images/portrait4.png"
               alt=""
             />
-            <div class="g-card-over">
+            <!-- <div class="g-card-over">
               <div class="g-card-title">Horizon</div>
               <div class="g-card-sub">Seascape · 2023</div>
-            </div>
+            </div> -->
           </div>
           <div class="g-card">
             <img
               src="../images/portrait5.png"
               alt=""
             />
-            <div class="g-card-over">
+            <!-- <div class="g-card-over">
               <div class="g-card-title">First Light</div>
               <div class="g-card-sub">Nature · 2022</div>
-            </div>
+            </div> -->
           </div>
           <div class="g-card">
             <img
               src="../images/portrait6.png"
               alt=""
             />
-            <div class="g-card-over">
+            <!-- <div class="g-card-over">
               <div class="g-card-title">Bloom</div>
               <div class="g-card-sub">Macro · 2022</div>
-            </div>
+            </div> -->
           </div>
             <div class="g-card">
             <img
               src="../images/portrait7.png"
               alt=""
             />
-            <div class="g-card-over">
+            <!-- <div class="g-card-over">
               <div class="g-card-title">Bloom</div>
               <div class="g-card-sub">Macro · 2022</div>
-            </div>
+            </div> -->
           </div>
           <div style="flex-shrink: 0; width: 70px"></div>
         </div>
       </div>
     </div>
-
-    <!-- ABOUT -->
-    <!-- <section id="about">
-      <div class="rv">
-        <div class="ab-label">The Studio</div>
-        <h2 class="ab-title">
-          We find<br />beauty in<br /><em>stillness.</em>
-        </h2>
-        <p class="ab-body">
-          House of Heaven is an independent photography studio rooted in
-          patience and light. Every frame is a conversation between subject and
-          shadow — unhurried, considered, real.
-        </p>
-        <a href="#contact" class="ab-cta"
-          >Begin a conversation<svg
-            width="16"
-            height="9"
-            viewBox="0 0 18 10"
-            fill="none"
-          >
-            <path
-              d="M0 5H16M12 1l4 4-4 4"
-              stroke="currentColor"
-              stroke-width="1"
-            /></svg
-        ></a>
-      </div>
-      <div class="ab-right rv" style="transition-delay: 0.14s">
-        <img
-          class="ab-img"
-          src="https://images.unsplash.com/photo-1551244072-5d12893278bc?w=800&q=80"
-          alt="Studio"
-        />
-        <div class="ab-frame"></div>
-        <p class="ab-caption">Studio — Paris &amp; Remote</p>
-      </div>
-    </section> -->
 
     <!-- CONTACT -->
     <section id="contact">
@@ -3065,296 +2225,15 @@
       ><br />
       <a href="#" class="ct-btn rv">Start a project</a>
     </section>
-    <footer>
-      <span>© 2024 House of Heaven</span><span>Paris, France</span
-      ><span>Photography &amp; Motion</span>
-    </footer>
+  
 
-    <!-- STORY CHAPTERS -->
-    <!-- <section id="story">
-      <div class="chapter" id="ch1" data-parallax=".28">
-        <div class="ch-line"></div>
-        <img
-          class="ch-img tone-warm"
-          src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1400&q=85"
-          alt=""
-        />
-        <div class="ch-vignette"></div>
-        <div class="fx-lightleak"></div>
-        <div class="fx-burn"></div>
-        <span class="ch-num">I</span>
-        <div class="ch-word"><em>before</em></div>
-        <div class="ch-dots">
-          <div class="ch-dot active"></div>
-          <div class="ch-dot"></div>
-          <div class="ch-dot"></div>
-          <div class="ch-dot"></div>
-          <div class="ch-dot"></div>
-        </div>
-      </div>
-      <div class="ch-divider"></div>
-      <div class="chapter" id="ch2" data-parallax=".22">
-        <div class="ch-line"></div>
-        <img
-          class="ch-img tone-cold"
-          src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=1400&q=85"
-          alt=""
-        />
-        <div class="ch-vignette"></div>
-        <div class="fx-aperture">
-          <div class="ap-ring"></div>
-          <div class="ap-ring"></div>
-          <div class="ap-ring"></div>
-          <div class="ap-dot"></div>
-        </div>
-        <span class="ch-num">II</span>
-        <div class="ch-word">focus</div>
-        <div class="ch-dots">
-          <div class="ch-dot"></div>
-          <div class="ch-dot active"></div>
-          <div class="ch-dot"></div>
-          <div class="ch-dot"></div>
-          <div class="ch-dot"></div>
-        </div>
-      </div>
-      <div class="ch-divider"></div>
-      <div class="chapter" id="ch3" data-parallax=".18">
-        <div class="ch-line"></div>
-        <img
-          class="ch-img tone-noir"
-          src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1400&q=85"
-          alt=""
-        />
-        <div class="ch-vignette"></div>
-        <div class="fx-scanlines"></div>
-        <div class="fx-scan-beam"></div>
-        <div class="fx-static"></div>
-        <span class="ch-num">III</span>
-        <div class="ch-word">archive</div>
-        <div class="ch-dots">
-          <div class="ch-dot"></div>
-          <div class="ch-dot"></div>
-          <div class="ch-dot active"></div>
-          <div class="ch-dot"></div>
-          <div class="ch-dot"></div>
-        </div>
-      </div>
-      <div class="ch-divider"></div>
-      <div class="chapter" id="ch4" data-parallax=".32">
-        <div class="ch-line"></div>
-        <img
-          class="ch-img tone-golden"
-          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=85"
-          alt=""
-        />
-        <div class="ch-vignette"></div>
-        <div class="fx-dust" id="dustLayer"></div>
-        <span class="ch-num">IV</span>
-        <div class="ch-word">still</div>
-        <div class="ch-dots">
-          <div class="ch-dot"></div>
-          <div class="ch-dot"></div>
-          <div class="ch-dot"></div>
-          <div class="ch-dot active"></div>
-          <div class="ch-dot"></div>
-        </div>
-      </div>
-      <div class="ch-divider"></div>
-      <div class="chapter" id="ch5" data-parallax=".14">
-        <div class="ch-line"></div>
-        <img
-          class="ch-img tone-faded"
-          src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=1400&q=85"
-          alt=""
-        />
-        <div class="ch-vignette"></div>
-        <div class="fx-double"></div>
-        <div class="fx-burn"></div>
-        <span class="ch-num">V</span>
-        <div class="ch-word"><em>lasting</em></div>
-        <div class="ch-dots">
-          <div class="ch-dot"></div>
-          <div class="ch-dot"></div>
-          <div class="ch-dot"></div>
-          <div class="ch-dot"></div>
-          <div class="ch-dot active"></div>
-        </div>
-      </div>
-    </section> -->
-
-    <!-- COUPLE TEXT -->
-    <section id="couple-text">
-      <div class="ct2-stroke-wrap">
-        <div class="ct2-stroke-line" id="sl1">
-          <span>H</span><span>E</span><span>A</span><span>V</span><span>E</span
-          ><span>N</span>
-        </div>
-        <div class="ct2-stroke-line italic" id="sl2">
-          <span>f</span><span>r</span><span>a</span><span>m</span><span>e</span
-          ><span>s</span>
-        </div>
-      </div>
-      <div class="ct2-imgs">
-        <div class="ct2-img">
-          <img
-            src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=85"
-            alt=""
-          />
-        </div>
-        <div class="ct2-img">
-          <img
-            src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=85"
-            alt=""
-          />
-        </div>
-      </div>
-      <div class="ct2-meta">
-        <div class="ct2-meta-label">The Archive</div>
-        <div class="ct2-meta-title">Every frame<br />is a decision.</div>
-      </div>
-      <div class="ct2-line"></div>
-    </section>
-
-    <!-- FILM STRIP -->
-    <!-- <section id="filmstrip">
-      <div class="film-perf">
-        <div class="film-hole"></div>
-        <div class="film-hole"></div>
-        <div class="film-hole"></div>
-        <div class="film-hole"></div>
-        <div class="film-hole"></div>
-        <div class="film-hole"></div>
-        <div class="film-hole"></div>
-        <div class="film-hole"></div>
-        <div class="film-hole"></div>
-        <div class="film-hole"></div>
-      </div>
-      <div class="film-track">
-        <div class="film-frame">
-          <img
-            src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=500&q=70"
-            alt=""
-          />
-          <div class="film-frame-num">001</div>
-        </div>
-        <div class="film-frame">
-          <img
-            src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=500&q=70"
-            alt=""
-          />
-          <div class="film-frame-num">002</div>
-        </div>
-        <div class="film-frame">
-          <img
-            src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=500&q=70"
-            alt=""
-          />
-          <div class="film-frame-num">003</div>
-        </div>
-        <div class="film-frame">
-          <img
-            src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=500&q=70"
-            alt=""
-          />
-          <div class="film-frame-num">004</div>
-        </div>
-        <div class="film-frame">
-          <img
-            src="https://images.unsplash.com/photo-1439853949212-36589f9f2ae8?w=500&q=70"
-            alt=""
-          />
-          <div class="film-frame-num">005</div>
-        </div>
-        <div class="film-frame">
-          <img
-            src="https://images.unsplash.com/photo-1444464666168-49d633b86797?w=500&q=70"
-            alt=""
-          />
-          <div class="film-frame-num">006</div>
-        </div>
-        <div class="film-frame">
-          <img
-            src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=500&q=70"
-            alt=""
-          />
-          <div class="film-frame-num">001</div>
-        </div>
-        <div class="film-frame">
-          <img
-            src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=500&q=70"
-            alt=""
-          />
-          <div class="film-frame-num">002</div>
-        </div>
-        <div class="film-frame">
-          <img
-            src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=500&q=70"
-            alt=""
-          />
-          <div class="film-frame-num">003</div>
-        </div>
-        <div class="film-frame">
-          <img
-            src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=500&q=70"
-            alt=""
-          />
-          <div class="film-frame-num">004</div>
-        </div>
-        <div class="film-frame">
-          <img
-            src="https://images.unsplash.com/photo-1439853949212-36589f9f2ae8?w=500&q=70"
-            alt=""
-          />
-          <div class="film-frame-num">005</div>
-        </div>
-        <div class="film-frame">
-          <img
-            src="https://images.unsplash.com/photo-1444464666168-49d633b86797?w=500&q=70"
-            alt=""
-          />
-          <div class="film-frame-num">006</div>
-        </div>
-      </div>
-      <div class="film-perf btm">
-        <div class="film-hole"></div>
-        <div class="film-hole"></div>
-        <div class="film-hole"></div>
-        <div class="film-hole"></div>
-        <div class="film-hole"></div>
-        <div class="film-hole"></div>
-        <div class="film-hole"></div>
-        <div class="film-hole"></div>
-        <div class="film-hole"></div>
-        <div class="film-hole"></div>
-      </div>
-    </section> -->
-
-    <!-- THREE.JS CAMERA LENS -->
-    <!-- <section id="three-lens">
-      <canvas id="three-canvas"></canvas>
-      <div class="three-copy">
-        <div class="three-copy-label">In the studio</div>
-        <div class="three-copy-title">The lens<br />sees all.</div>
-        <div class="three-copy-sub">f/1.4 · ISO 100 · ∞</div>
-      </div>
-    </section> -->
-
-    <!-- GLSL EXPOSURE -->
-    <!-- <section id="glsl-exposure">
-      <canvas id="exp-canvas"></canvas>
-      <div class="exp-copy">
-        <div class="exp-title rv">
-          Expose.<br /><em>Develop.</em><br />Preserve.
-        </div>
-      </div>
-    </section> -->
 
     <!-- COUPLE WIDE -->
     <section id="couple-wide">
       <img
         class="cw-img"
         id="cwImg"
-        src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1600&q=85"
+        src="../images/house.png"
         alt=""
       />
       <div class="cw-vignette"></div>
@@ -3363,10 +2242,7 @@
         ><span class="cw-stroke solid">of</span
         ><span class="cw-stroke">HEAVEN</span>
       </div>
-      <div class="cw-caption">
-        <div class="cw-caption-num">Series 01</div>
-        <div class="cw-caption-title">Vast &amp; Quiet</div>
-      </div>
+      
     </section>
 
     <!-- PHILOSOPHY -->
@@ -3376,7 +2252,7 @@
       <div class="phil-orb"></div>
       <div class="phil-content">
         <div class="phil-quote">
-          Light does not<br />illuminate —<br />it <em>reveals.</em>
+          Framing love <br /> light & everything in <em>  between.</em>
         </div>
       </div>
     </section>
@@ -3398,40 +2274,42 @@
         "
       ></div>
       <div class="cred-content rv">
-        <div class="cred-super">Est. 2017 · Paris, France</div>
+        <div class="cred-super"></div>
         <div class="cred-studio">
           HOUSE<span class="cred-of">of</span><em>Heaven</em>
         </div>
         <div class="cred-divider"></div>
         <div class="cred-meta">
-          <div class="cred-meta-item">Commissions<span>Open</span></div>
+          <div class="cred-meta-item"><span>Our Couple</span></div>
           <div class="cred-meta-item">
-            Based in<span>Paris &amp; Remote</span>
+            <span>Portfolio</span>
           </div>
           <div class="cred-meta-item">
-            Medium<span>Film &amp; Digital</span>
+            <span>Contact</span>
           </div>
-          <div class="cred-meta-item">Since<span>2017</span></div>
+          <div class="cred-meta-item"><span>Work</span></div>
         </div>
       </div>
       <div class="cred-ticker">
         <div class="cred-ticker-inner">
           <span class="cred-ticker-item">Photography</span
-          ><span class="cred-ticker-item">Motion Graphics</span
-          ><span class="cred-ticker-item">Art Direction</span
-          ><span class="cred-ticker-item">Portrait</span
-          ><span class="cred-ticker-item">Landscape</span
-          ><span class="cred-ticker-item">Brand Identity</span
-          ><span class="cred-ticker-item">Fine Art</span
-          ><span class="cred-ticker-item">Editorial</span>
-          <span class="cred-ticker-item">Photography</span
-          ><span class="cred-ticker-item">Motion Graphics</span
-          ><span class="cred-ticker-item">Art Direction</span
-          ><span class="cred-ticker-item">Portrait</span
-          ><span class="cred-ticker-item">Landscape</span
-          ><span class="cred-ticker-item">Brand Identity</span
-          ><span class="cred-ticker-item">Fine Art</span
-          ><span class="cred-ticker-item">Editorial</span>
+          ><span class="cred-ticker-item">Photography</span
+          ><span class="cred-ticker-item">Photography</span
+          ><span class="cred-ticker-item">Photography</span
+          ><span class="cred-ticker-item">Photography</span
+          ><span class="cred-ticker-item">Photography</span
+          ><span class="cred-ticker-item">Photography</span
+          ><span class="cred-ticker-item">Photography</span
+          >
+         <span class="cred-ticker-item">Photography</span
+          ><span class="cred-ticker-item">Photography</span
+          ><span class="cred-ticker-item">Photography</span
+          ><span class="cred-ticker-item">Photography</span
+          ><span class="cred-ticker-item">Photography</span
+          ><span class="cred-ticker-item">Photography</span
+          ><span class="cred-ticker-item">Photography</span
+          ><span class="cred-ticker-item">Photography</span
+          >
         </div>
       </div>
     </section>
@@ -3595,22 +2473,6 @@
       window.addEventListener("scroll", gScr, { passive: true });
       gScr();
 
-      /* ── MOMENT PARALLAX ── */
-      const momentImgs = document.querySelectorAll(".moment-img[data-par]");
-      window.addEventListener(
-        "scroll",
-        () => {
-          momentImgs.forEach((img) => {
-            const r = img.closest(".moment-block").getBoundingClientRect();
-            const prog =
-              (window.innerHeight - r.top) / (window.innerHeight + r.height);
-            const spd = parseFloat(img.dataset.par);
-            img.style.transform = `scale(1.15) translateY(${(prog - 0.5) * spd * 100}px)`;
-          });
-        },
-        { passive: true },
-      );
-
       /* ── HERO PARALLAX ── */
       window.addEventListener(
         "scroll",
@@ -3622,37 +2484,6 @@
         },
         { passive: true },
       );
-
-      /* ── CHAPTER PARALLAX ── */
-      const chapters = document.querySelectorAll(".chapter[data-parallax]");
-      const chPar = () => {
-        chapters.forEach((ch) => {
-          const r = ch.getBoundingClientRect();
-          const prog =
-            (window.innerHeight - r.top) / (window.innerHeight + r.height);
-          const spd = parseFloat(ch.dataset.parallax);
-          const img = ch.querySelector(".ch-img");
-          if (img)
-            img.style.transform = `scale(1.14) translateY(${(prog - 0.5) * spd * 100}px)`;
-        });
-      };
-      window.addEventListener("scroll", chPar, { passive: true });
-      chPar();
-
-      /* ── SHUTTER BLINK ── */
-      const chObs = new IntersectionObserver(
-        (es) => {
-          es.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add("shutter", "entered");
-              setTimeout(() => e.target.classList.remove("shutter"), 350);
-              chObs.unobserve(e.target);
-            }
-          });
-        },
-        { threshold: 0.12 },
-      );
-      chapters.forEach((c) => chObs.observe(c));
 
       /* ── KINETIC SPLIT ── */
       const ksWords = document
@@ -3726,23 +2557,6 @@
         });
       })();
 
-      /* ── DUST MOTES ── */
-      (() => {
-        const s = document.createElement("style");
-        s.textContent = `@keyframes dustUp{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:var(--op)}80%{opacity:calc(var(--op)*.4)}100%{transform:translateY(-110vh) translateX(var(--dx));opacity:0}}`;
-        document.head.appendChild(s);
-        const c = document.getElementById("dustLayer");
-        if (!c) return;
-        for (let i = 0; i < 26; i++) {
-          const d = document.createElement("div");
-          const sz = Math.random() * 2.2 + 0.7;
-          const op = Math.random() * 0.45 + 0.12;
-          const dx = Math.random() * 70 - 35 + "px";
-          d.style.cssText = `position:absolute;border-radius:50%;background:rgba(255,255,255,.65);width:${sz}px;height:${sz}px;left:${Math.random() * 100}%;bottom:-4%;--op:${op};--dx:${dx};animation:dustUp ${11 + Math.random() * 15}s ${Math.random() * 9}s linear infinite;`;
-          c.appendChild(d);
-        }
-      })();
-
       /* ── STROKE TEXT REVEAL ── */
       const strokeObs = new IntersectionObserver(
         (es) => {
@@ -3785,204 +2599,6 @@
         { threshold: 0.1 },
       );
       document.querySelectorAll(".pg-item").forEach((el) => pgObs.observe(el));
-
-      /* ══ THREE.JS — CAMERA APERTURE ══ */
-      (function initThree() {
-        const canvas = document.getElementById("three-canvas");
-        const renderer = new THREE.WebGLRenderer({
-          canvas,
-          alpha: true,
-          antialias: true,
-        });
-        renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-        const resize = () =>
-          renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
-        resize();
-        window.addEventListener("resize", resize);
-        const scene = new THREE.Scene();
-        const cam = new THREE.PerspectiveCamera(
-          55,
-          canvas.offsetWidth / canvas.offsetHeight,
-          0.1,
-          100,
-        );
-        cam.position.z = 5;
-        window.addEventListener("resize", () => {
-          cam.aspect = canvas.offsetWidth / canvas.offsetHeight;
-          cam.updateProjectionMatrix();
-        });
-        const ringMat = new THREE.LineBasicMaterial({
-          color: 0xc8c8c8,
-          transparent: true,
-          opacity: 0.22,
-        });
-        const rings = [];
-        [3.2, 2.4, 1.7, 1.1, 0.6].forEach((r, i) => {
-          const pts = [];
-          for (let a = 0; a <= Math.PI * 2; a += 0.04)
-            pts.push(new THREE.Vector3(Math.cos(a) * r, Math.sin(a) * r, 0));
-          const geo = new THREE.BufferGeometry().setFromPoints(pts);
-          const mat = ringMat.clone();
-          mat.opacity = 0.08 + i * 0.04;
-          const ring = new THREE.Line(geo, mat);
-          ring.userData = { speed: 0.12 + i * 0.08, phase: i * 1.1 };
-          scene.add(ring);
-          rings.push(ring);
-        });
-        const bladeGroup = new THREE.Group();
-        const bladeMat = new THREE.MeshBasicMaterial({
-          color: 0x181818,
-          transparent: true,
-          opacity: 0.85,
-          side: THREE.DoubleSide,
-        });
-        for (let i = 0; i < 6; i++) {
-          const geo = new THREE.PlaneGeometry(0.8, 2.2);
-          const mesh = new THREE.Mesh(geo, bladeMat.clone());
-          mesh.rotation.z = i * (Math.PI / 3);
-          mesh.position.set(
-            Math.cos(i * (Math.PI / 3)) * 0.7,
-            Math.sin(i * (Math.PI / 3)) * 0.7,
-            0,
-          );
-          bladeGroup.add(mesh);
-        }
-        bladeGroup.scale.set(0, 0, 0);
-        scene.add(bladeGroup);
-        const ptCount = 300,
-          ptGeo = new THREE.BufferGeometry(),
-          ptPos = new Float32Array(ptCount * 3);
-        for (let i = 0; i < ptCount * 3; i++)
-          ptPos[i] = (Math.random() - 0.5) * 14;
-        ptGeo.setAttribute("position", new THREE.BufferAttribute(ptPos, 3));
-        const ptMat = new THREE.PointsMaterial({
-          color: 0xc8c8c8,
-          size: 0.025,
-          transparent: true,
-          opacity: 0.55,
-        });
-        const pts = new THREE.Points(ptGeo, ptMat);
-        scene.add(pts);
-        const sphereGeo = new THREE.SphereGeometry(0.08, 16, 16);
-        const sphereMat = new THREE.MeshBasicMaterial({
-          color: 0xffffff,
-          transparent: true,
-          opacity: 0.6,
-        });
-        const sphere = new THREE.Mesh(sphereGeo, sphereMat);
-        scene.add(sphere);
-        let mx3 = 0,
-          my3 = 0;
-        const tl = document.getElementById("three-lens");
-        tl.addEventListener("mousemove", (e) => {
-          const r = tl.getBoundingClientRect();
-          mx3 = (e.clientX - r.left) / r.width - 0.5;
-          my3 = -(e.clientY - r.top) / r.height + 0.5;
-        });
-        let vis3 = false;
-        new IntersectionObserver(
-          (es) => es.forEach((e) => (vis3 = e.isIntersecting)),
-          { threshold: 0.1 },
-        ).observe(tl);
-        const t0 = performance.now();
-        (function fr(now) {
-          requestAnimationFrame(fr);
-          if (!vis3) return;
-          const elapsed = (now - t0) * 0.001;
-          rings.forEach((r) => {
-            r.rotation.z = elapsed * r.userData.speed + r.userData.phase;
-            r.material.opacity =
-              0.1 + Math.abs(Math.sin(elapsed * 0.4 + r.userData.phase)) * 0.12;
-          });
-          pts.rotation.y = elapsed * 0.04;
-          pts.rotation.x = elapsed * 0.02;
-          bladeGroup.rotation.z = elapsed * 0.18;
-          const sc = Math.abs(Math.sin(elapsed * 0.22)) * 0.65 + 0.35;
-          bladeGroup.scale.set(sc, sc, sc);
-          cam.position.x += (mx3 * 0.4 - cam.position.x) * 0.04;
-          cam.position.y += (my3 * 0.4 - cam.position.y) * 0.04;
-          cam.lookAt(0, 0, 0);
-          sphere.material.opacity = 0.4 + Math.sin(elapsed * 2) * 0.2;
-          renderer.render(scene, cam);
-        })(performance.now());
-      })();
-
-      /* ══ GLSL EXPOSURE ══ */
-      (function initExp() {
-        const canvas = document.getElementById("exp-canvas");
-        const gl = canvas.getContext("webgl", {
-          alpha: true,
-          premultipliedAlpha: false,
-        });
-        if (!gl) return;
-        const rsz = () => {
-          canvas.width = canvas.offsetWidth * Math.min(devicePixelRatio, 2);
-          canvas.height = canvas.offsetHeight * Math.min(devicePixelRatio, 2);
-          gl.viewport(0, 0, canvas.width, canvas.height);
-        };
-        rsz();
-        window.addEventListener("resize", rsz);
-        const VS = `attribute vec2 a;varying vec2 v;void main(){v=a*.5+.5;gl_Position=vec4(a,0.,1.);}`;
-        const FS = `precision highp float;varying vec2 v;uniform float t;uniform vec2 res;uniform vec2 mouse;
-      float hash(float n){return fract(sin(n)*43758.5453);}
-      float bar(vec2 uv,float x,float w,float h){float inside=step(x,uv.x)*step(uv.x,x+w)*step(uv.y,h)*step(.0,uv.y);return inside;}
-      void main(){vec2 uv=v;float asp=res.x/res.y;float total=0.;
-      int N=60;for(int i=0;i<60;i++){float fi=float(i);float x=fi/60.;float w=1./62.;float noise=hash(fi*1.37+floor(t*.8));float baseH=.05+hash(fi*.71)*.35;float animH=baseH+sin(t*1.2+fi*.4)*.08+noise*.04;float b=bar(uv,x,w,animH*.65);float bright=.15+fi/60.*.6;total+=b*bright;}
-      float wave=sin(uv.x*18.-t*2.5)*(.04+.03*sin(t*.7+uv.x*5.));float waveLine=smoothstep(.008,0.,abs(uv.y-.5+wave-.08))*(.3+.2*sin(uv.x*12.+t));total+=waveLine;
-      vec2 mu=mouse;float d=length(uv-mu);float ripple=sin(d*40.-t*5.)*exp(-d*6.)*step(0.,(1.-d*3.));total+=ripple*.12;
-      float vig=1.-smoothstep(.3,.9,length((uv-.5)*vec2(asp,1.)));total*=vig;
-      vec3 col=mix(vec3(.94,.93,.91),vec3(.6,.6,.6),clamp(total,0.,1.));float alpha=clamp(total*1.4,0.,.85);gl_FragColor=vec4(col,alpha);}`;
-        const mk = (t, s) => {
-          const sh = gl.createShader(t);
-          gl.shaderSource(sh, s);
-          gl.compileShader(sh);
-          return sh;
-        };
-        const p = gl.createProgram();
-        gl.attachShader(p, mk(gl.VERTEX_SHADER, VS));
-        gl.attachShader(p, mk(gl.FRAGMENT_SHADER, FS));
-        gl.linkProgram(p);
-        gl.useProgram(p);
-        const buf = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-        gl.bufferData(
-          gl.ARRAY_BUFFER,
-          new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]),
-          gl.STATIC_DRAW,
-        );
-        const aPos = gl.getAttribLocation(p, "a");
-        gl.enableVertexAttribArray(aPos);
-        gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
-        const uT = gl.getUniformLocation(p, "t"),
-          uRes = gl.getUniformLocation(p, "res"),
-          uMouse = gl.getUniformLocation(p, "mouse");
-        gl.enable(gl.BLEND);
-        gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-        let emx = 0.5,
-          emy = 0.5;
-        const expSec = document.getElementById("glsl-exposure");
-        expSec.addEventListener("mousemove", (e) => {
-          const r = expSec.getBoundingClientRect();
-          emx = (e.clientX - r.left) / r.width;
-          emy = 1 - (e.clientY - r.top) / r.height;
-        });
-        let visE = false;
-        new IntersectionObserver(
-          (es) => es.forEach((e) => (visE = e.isIntersecting)),
-          { threshold: 0.1 },
-        ).observe(expSec);
-        const t0 = performance.now();
-        (function fr(now) {
-          requestAnimationFrame(fr);
-          if (!visE) return;
-          gl.clearColor(0, 0, 0, 0);
-          gl.clear(gl.COLOR_BUFFER_BIT);
-          gl.uniform1f(uT, (now - t0) * 0.001);
-          gl.uniform2f(uRes, canvas.width, canvas.height);
-          gl.uniform2f(uMouse, emx, emy);
-          gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-        })(performance.now());
-      })();
 
       /* ── PHILOSOPHY WEBGL ── */
       (() => {
