@@ -107,7 +107,7 @@
         flex-direction: column;
         transition:
           opacity 1.2s,
-          visibility 1.2s;
+          visibility 0.5s;
       }
       #loader.out {
         opacity: 0;
@@ -1372,6 +1372,22 @@
         color: rgba(240, 237, 232, 0.55);
         margin-top: 5px;
       }
+      .ct2-img {
+  position: relative;
+}
+
+.ct2-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.7)
+  );
+  z-index: 2;
+  pointer-events: none;
+}
 
       /* ─── PHILOSOPHY ─── */
       #philosophy {
@@ -1734,7 +1750,7 @@
       <a href="#" class="nav-logo">House of  Heaven</a>
       <ul class="nav-links">
         <li><a href="#services">Our couples</a></li>
-        <li><a href="#gallery">Work</a></li>
+        <li><a href="#work">Work</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -2029,7 +2045,7 @@
 
     <!-- ══ NEW: PHOTO GRID ══ -->
     <section id="photo-grid">
-      <div class="pg-header rv">
+      <div id="work" class="pg-header rv">
         <div class="pg-label">Portfolio </div>
         <div class="pg-title">Selected Work</div>
       </div>
@@ -2313,8 +2329,11 @@
       </div>
     </section>
 
+       <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
+      
       /* ── CURSOR ── */
       const cur = document.getElementById("cur"),
         curR = document.getElementById("cur-r");
@@ -2674,6 +2693,21 @@
         { threshold: 0.08 },
       );
       document.querySelectorAll(".rv").forEach((el) => obs.observe(el));
+        const lenis = new Lenis({
+    duration: 1.1,
+    smooth: true,
+    direction: 'vertical',
+    gestureDirection: 'vertical',
+    smoothTouch: false
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
     </script>
+  
   </body>
 </html>
