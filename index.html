@@ -1051,41 +1051,162 @@
 
       /* ─── CONTACT ─── */
       #contact {
-        padding: 130px 56px;
-        text-align: center;
+        padding: 100px 56px;
         background: #000;
         color: var(--fg);
         position: relative;
         overflow: hidden;
+        border-top: 1px solid var(--line);
       }
-      #contact::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(
-          ellipse 60% 50% at 50% 50%,
-          rgba(200, 200, 200, 0.05) 0%,
-          transparent 70%
-        );
+      .contact-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: start;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .contact-form {
+        position: relative;
       }
       .ct-label {
         font-size: 9px;
         letter-spacing: 0.28em;
         text-transform: uppercase;
         color: var(--silver);
-        margin-bottom: 22px;
+        margin-bottom: 24px;
+        display: block;
       }
       .ct-title {
-        font-size: clamp(50px, 9vw, 120px);
+        font-size: clamp(32px, 4vw, 56px);
         font-weight: 300;
-        line-height: 0.9;
-        letter-spacing: -0.02em;
-        position: relative;
-        z-index: 1;
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+        color: var(--fg);
+        margin-bottom: 40px;
       }
       .ct-title em {
         font-style: italic;
         color: var(--silver);
+      }
+      .form-group {
+        margin-bottom: 28px;
+      }
+      .form-group label {
+        display: block;
+        font-size: 8px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: rgba(240, 237, 232, 0.4);
+        margin-bottom: 10px;
+      }
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid rgba(240, 237, 232, 0.15);
+        padding: 12px 0;
+        font-size: 13px;
+        color: var(--fg);
+        font-family: inherit;
+        outline: none;
+        transition: border-color 0.3s, color 0.3s;
+        box-sizing: border-box;
+      }
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: rgba(240, 237, 232, 0.15);
+      }
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-bottom-color: var(--silver);
+        color: var(--silver);
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+      .form-row .form-group {
+        margin-bottom: 28px;
+      }
+      .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+        border: 1px solid rgba(240, 237, 232, 0.15);
+        padding: 16px;
+      }
+      .form-group textarea:focus {
+        border-color: var(--silver);
+      }
+      .ct-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 20px;
+        border: 1px solid rgba(240, 237, 232, 0.2);
+        padding: 14px 36px;
+        font-size: 9px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--fg);
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .ct-btn:hover {
+        background: var(--fg);
+        color: #000;
+        border-color: var(--fg);
+      }
+      .contact-info {
+        position: relative;
+      }
+      .contact-map {
+        position: relative;
+        width: 100%;
+        height: 380px;
+        border: 1px solid rgba(240, 237, 232, 0.1);
+        margin-bottom: 40px;
+        overflow: hidden;
+      }
+      .contact-map iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        filter: invert(1) hue-rotate(180deg) brightness(0.9);
+      }
+      .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+      .detail-block {
+        border-left: 1px solid rgba(200, 200, 200, 0.15);
+        padding-left: 20px;
+      }
+      .detail-label {
+        font-size: 8px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: rgba(240, 237, 232, 0.35);
+        margin-bottom: 8px;
+        display: block;
+      }
+      .detail-content {
+        font-size: 13px;
+        color: rgba(240, 237, 232, 0.75);
+        line-height: 1.6;
+      }
+      .detail-content a {
+        color: var(--silver);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(200, 200, 200, 0.3);
+        transition: border-color 0.3s;
+      }
+      .detail-content a:hover {
+        border-bottom-color: var(--silver);
       }
       .ct-mail {
         display: inline-block;
@@ -1106,28 +1227,23 @@
         color: var(--silver);
         border-color: var(--silver);
       }
-      .ct-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 14px;
-        margin-top: 40px;
-        border: 1px solid rgba(240, 237, 232, 0.15);
-        padding: 16px 38px;
-        font-size: 9px;
-        letter-spacing: 0.25em;
-        text-transform: uppercase;
-        color: var(--fg);
-        text-decoration: none;
-        transition:
-          background 0.3s,
-          border-color 0.3s,
-          color 0.3s;
-        position: relative;
-        z-index: 1;
+      @media (max-width: 1000px) {
+        .contact-container {
+          grid-template-columns: 1fr;
+          gap: 60px;
+        }
+        #contact {
+          padding: 70px 28px;
+        }
       }
-      .ct-btn:hover {
-        background: var(--fg);
-        color: #000;
+      @media (max-width: 600px) {
+        .form-row {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .contact-map {
+          height: 280px;
+        }
       }
       footer {
         padding: 24px 56px;
@@ -2231,15 +2347,7 @@
     </div>
 
     <!-- CONTACT -->
-    <section id="contact">
-      <div class="ct-label rv">Let's work together</div>
-      <h2 class="ct-title rv">Make<br />something<br /><em>lasting.</em></h2>
-      <br />
-      <a href="mailto:hello@houseofheaven.studio" class="ct-mail rv"
-        >hello@houseofheaven.studio</a
-      ><br />
-      <a href="#" class="ct-btn rv">Start a project</a>
-    </section>
+   
   
 
 
@@ -2268,6 +2376,80 @@
       <div class="phil-content">
         <div class="phil-quote">
           Framing love <br /> light & everything in <em>  between.</em>
+        </div>
+      </div>
+    </section>
+
+     <section id="contact">
+      <div class="contact-container">
+        <div class="contact-form rv">
+          <span class="ct-label">Get in touch</span>
+          <h2 class="ct-title">Let's create<br /><em>something beautiful.</em></h2>
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Your name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" placeholder="+33 (0)1 00 00 00 00">
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="Project type" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+            </div>
+            <button type="submit" class="ct-btn">
+              Send Message
+              <svg width="16" height="9" viewBox="0 0 18 10" fill="none">
+                <path d="M0 5H16M12 1l4 4-4 4" stroke="currentColor" stroke-width="1" />
+              </svg>
+            </button>
+          </form>
+        </div>
+        <div class="contact-info rv" style="animation-delay: 0.1s">
+          <div class="contact-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9915867578573!2d2.2922926!3d48.8566139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d877537645%3A0x50601ff3d735f0c0!banglore%2C%20France!5e0!3m2!1sen!2sus!4v1640000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="contact-details">
+            <div class="detail-block">
+              <span class="detail-label">Location</span>
+              <div class="detail-content">
+                Banglore<br />
+               India
+              </div>
+            </div>
+            <div class="detail-block">
+              <span class="detail-label">Email</span>
+              <div class="detail-content">
+                <a href="mailto:hello@houseofheaven.studio">hello@houseofheaven.studio</a>
+              </div>
+            </div>
+            <div class="detail-block">
+              <span class="detail-label">Phone</span>
+              <div class="detail-content">
+                <a href="tel:+33100000000">+33 (0)1 00 00 00 00</a>
+              </div>
+            </div>
+            <div class="detail-block">
+              <span class="detail-label">Availability</span>
+              <div class="detail-content">
+                Available for new projects<br />
+                Response time: 24-48 hours
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
