@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Couples · Portfolio</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #ffffff;
+  --ink: #111010;
+  --mid: #888480;
+  --faint: #d0ccc6;
+  --accent: #9a7f5e;
+  --border: #eeebe6;
+  --ease: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+html, body {
+  width: 100%; height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  
+  overflow: hidden;
+}
+
+/* ── SHELL ── */
+.shell {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  height: 100vh;
+}
+
+/* ══════════════════════════════
+   LEFT PANEL
+══════════════════════════════ */
+.left {
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 40px 36px;
+  position: relative;
+}
+
+.left-top {
+  margin-bottom: 48px;
+}
+
+.brand {
+  font-size: .52rem;
+  font-weight: 200;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+/* Active couple display */
+.active-couple {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.couple-index {
+  font-size: .5rem;
+  font-weight: 200;
+  letter-spacing: .22em;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.couple-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -.01em;
+}
+
+.couple-name em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.couple-sub {
+  font-size: .5rem;
+  font-weight: 200;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-top: 14px;
+}
+
+/* Image progress dots */
+.progress-dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 40px;
+}
+
+.pdot {
+  height: 1.5px;
+  background: var(--faint);
+  flex: 1;
+  transition: background .3s;
+}
+.pdot.active { background: var(--accent); }
+
+/* Scroll hint */
+.scroll-hint {
+  font-size: .48rem;
+  font-weight: 200;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.scroll-hint::before { content: ''; width: 20px; height: 1px; background: var(--faint); }
+
+/* Bottom nav */
+.left-bottom {
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-btn {
+  width: 36px; height: 36px;
+  border: 1px solid var(--border);
+  background: none;
+  cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: .9rem;
+  color: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.nav-btn:hover:not(:disabled) { background: var(--ink); color: #fff; border-color: var(--ink); }
+.nav-btn:disabled { opacity: .2; cursor: default; }
+
+.couple-count {
+  font-size: .5rem;
+  font-weight: 200;
+  letter-spacing: .15em;
+  color: var(--faint);
+}
+.couple-count strong { color: var(--ink); font-weight: 300; }
+
+/* ══════════════════════════════
+   RIGHT PANEL — scroll container
+══════════════════════════════ */
+.right {
+  position: relative;
+  overflow: hidden;
+}
+
+/* One "story" per couple — full height, scroll-snap */
+.story {
+  position: absolute;
+  inset: 0;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .0s;
+}
+.story::-webkit-scrollbar { display: none; }
+
+.story.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Each image slide */
+.img-slide {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7f5f2;
+  position: relative;
+}
+
+.img-box {
+  width: 54%;
+  max-width: 400px;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  position: relative;
+}
+
+.img-box img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 6s linear;
+}
+.img-slide.in-view .img-box img { transform: scale(1.04); }
+
+/* Slide number */
+.slide-num {
+  position: absolute;
+  bottom: 36px;
+  right: 48px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: .75rem;
+  font-weight: 300;
+  color: var(--faint);
+  letter-spacing: .08em;
+}
+
+/* ── MARQUEE SLIDE (last) ── */
+.marquee-slide {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+  gap: 0;
+}
+
+.marquee-label {
+  font-size: .5rem;
+  font-weight: 200;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  margin-bottom: 32px;
+}
+
+.marquee-wrap {
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: mScroll 12s linear infinite;
+}
+.marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+
+@keyframes mScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.m-item {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 0 28px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 300;
+  color: rgba(255,255,255,.85);
+  letter-spacing: -.02em;
+  cursor: pointer;
+}
+.m-item em { font-style: italic; color: rgba(201,169,110,.7); margin: 0 4px; }
+.m-sep { color: rgba(255,255,255,.2); margin: 0 8px; font-size: 1rem; }
+
+.next-btn {
+  margin-top: 48px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: .52rem;
+  font-weight: 200;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  background: none;
+  border: 1px solid rgba(255,255,255,.15);
+  cursor: pointer;
+  padding: 14px 28px;
+  transition: color .25s, border-color .25s;
+  
+}
+.next-btn:hover { color: rgba(255,255,255,.85); border-color: rgba(255,255,255,.4); }
+.next-btn::after { content: '→'; font-size: .9rem; }
+
+/* ── STORY TRANSITION ── */
+.story.entering { animation: storyIn .65s var(--ease) both; }
+.story.exiting  { animation: storyOut .5s var(--ease) both; }
+
+@keyframes storyIn  { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:none; } }
+@keyframes storyOut { to   { opacity:0; transform:translateY(-30px); } }
+
+/* Left panel name transition */
+.couple-name, .couple-index, .couple-sub {
+  transition: opacity .4s, transform .4s var(--ease);
+}
+.name-exit .couple-name,
+.name-exit .couple-index,
+.name-exit .couple-sub { opacity: 0; transform: translateY(12px); }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ── LEFT ── -->
+  <aside class="left">
+    <div class="left-top">
+      <span class="brand">Moments</span>
+    </div>
+
+    <div class="active-couple" id="activeCouple">
+      <div class="couple-index" id="cIdx">/01</div>
+      <div class="couple-name" id="cName">Prathibha <em>&</em><br>Akshay</div>
+      <div class="couple-sub" id="cSub">Hyderabad · 2024</div>
+      <div class="progress-dots" id="progressDots">
+        <div class="pdot active"></div>
+        <div class="pdot"></div>
+        <div class="pdot"></div>
+        <div class="pdot"></div>
+        <div class="pdot"></div>
+      </div>
+      <div class="scroll-hint">Scroll images</div>
+    </div>
+
+    <div class="left-bottom">
+      <button class="nav-btn" id="btnPrev" disabled>↑</button>
+      <span class="couple-count"><strong id="ccCur">01</strong> / 03</span>
+      <button class="nav-btn" id="btnNext">↓</button>
+    </div>
+  </aside>
+
+  <!-- ── RIGHT ── -->
+  <main class="right" id="right">
+
+    <!-- Story 0: Prathibha & Akshay -->
+    <div class="story active" data-story="0">
+      <div class="img-slide">
+        <div class="img-box"><img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=85" alt=""/></div>
+        <span class="slide-num">01 / 05</span>
+      </div>
+      <div class="img-slide">
+        <div class="img-box"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=85" alt=""/></div>
+        <span class="slide-num">02 / 05</span>
+      </div>
+      <div class="img-slide">
+        <div class="img-box"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&q=85" alt=""/></div>
+        <span class="slide-num">03 / 05</span>
+      </div>
+      <div class="img-slide">
+        <div class="img-box"><img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=800&q=85" alt=""/></div>
+        <span class="slide-num">04 / 05</span>
+      </div>
+      <div class="img-slide">
+        <div class="img-box"><img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=85" alt=""/></div>
+        <span class="slide-num">05 / 05</span>
+      </div>
+      <!-- Marquee next -->
+      <div class="marquee-slide">
+        <p class="marquee-label">Next Couple</p>
+        <div class="marquee-wrap">
+          <div class="marquee-track" id="mtrack-0"></div>
+        </div>
+        <button class="next-btn" onclick="goTo(1)">View Surabhi & Sanketh</button>
+      </div>
+    </div>
+
+    <!-- Story 1: Surabhi & Sanketh -->
+    <div class="story" data-story="1">
+      <div class="img-slide">
+        <div class="img-box"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=800&q=85" alt=""/></div>
+        <span class="slide-num">01 / 05</span>
+      </div>
+      <div class="img-slide">
+        <div class="img-box"><img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&q=85" alt=""/></div>
+        <span class="slide-num">02 / 05</span>
+      </div>
+      <div class="img-slide">
+        <div class="img-box"><img src="https://images.unsplash.com/photo-1518610359058-b7d8d27b5d68?w=800&q=85" alt=""/></div>
+        <span class="slide-num">03 / 05</span>
+      </div>
+      <div class="img-slide">
+        <div class="img-box"><img src="https://images.unsplash.com/photo-1510279931888-2cf59b28fb48?w=800&q=85" alt=""/></div>
+        <span class="slide-num">04 / 05</span>
+      </div>
+      <div class="img-slide">
+        <div class="img-box"><img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=800&q=85" alt=""/></div>
+        <span class="slide-num">05 / 05</span>
+      </div>
+      <div class="marquee-slide">
+        <p class="marquee-label">Next Couple</p>
+        <div class="marquee-wrap">
+          <div class="marquee-track" id="mtrack-1"></div>
+        </div>
+        <button class="next-btn" onclick="goTo(2)">View Pravallika & Akhil</button>
+      </div>
+    </div>
+
+    <!-- Story 2: Pravallika & Akhil -->
+    <div class="story" data-story="2">
+      <div class="img-slide">
+        <div class="img-box"><img src="https://images.unsplash.com/photo-1525328437458-0be9f918aca8?w=800&q=85" alt=""/></div>
+        <span class="slide-num">01 / 05</span>
+      </div>
+      <div class="img-slide">
+        <div class="img-box"><img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=800&q=85" alt=""/></div>
+        <span class="slide-num">02 / 05</span>
+      </div>
+      <div class="img-slide">
+        <div class="img-box"><img src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?w=800&q=85" alt=""/></div>
+        <span class="slide-num">03 / 05</span>
+      </div>
+      <div class="img-slide">
+        <div class="img-box"><img src="https://images.unsplash.com/photo-1562971964-06a03ab6c92f?w=800&q=85" alt=""/></div>
+        <span class="slide-num">04 / 05</span>
+      </div>
+      <div class="img-slide">
+        <div class="img-box"><img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=800&q=85" alt=""/></div>
+        <span class="slide-num">05 / 05</span>
+      </div>
+      <div class="marquee-slide">
+        <p class="marquee-label">Back to Start</p>
+        <div class="marquee-wrap">
+          <div class="marquee-track" id="mtrack-2"></div>
+        </div>
+        <button class="next-btn" onclick="goTo(0)">View Prathibha & Akshay</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+const couples = [
+  { idx: '/01', name: 'Prathibha <em>&</em><br>Akshay',   sub: 'Hyderabad · 2024', next: 'Surabhi & Sanketh' },
+  { idx: '/02', name: 'Surabhi <em>&</em><br>Sanketh',     sub: 'Bangalore · 2024', next: 'Pravallika & Akhil' },
+  { idx: '/03', name: 'Pravallika <em>&</em><br>Akhil',    sub: 'Chennai · 2025',   next: 'Prathibha & Akshay' },
+];
+
+const TOTAL   = couples.length;
+let current   = 0;
+let busy      = false;
+
+const stories   = document.querySelectorAll('.story');
+const btnPrev   = document.getElementById('btnPrev');
+const btnNext   = document.getElementById('btnNext');
+const ccCur     = document.getElementById('ccCur');
+const cIdx      = document.getElementById('cIdx');
+const cName     = document.getElementById('cName');
+const cSub      = document.getElementById('cSub');
+const dots      = document.querySelectorAll('.pdot');
+const activeCouple = document.getElementById('activeCouple');
+
+// ── Build marquee tracks ──────────────────────────────────────
+couples.forEach((c, i) => {
+  const track = document.getElementById(`mtrack-${i}`);
+  const next  = couples[(i + 1) % TOTAL];
+  const parts = next.name.replace('<br>', ' ').split('<em>&</em>');
+  const display = parts.length === 2
+    ? `${parts[0].trim()} <em>&</em> ${parts[1].trim()}`
+    : next.name;
+  for (let r = 0; r < 6; r++) {
+    const span = document.createElement('span');
+    span.className = 'm-item';
+    span.innerHTML = display + `<span class="m-sep">·</span>`;
+    track.appendChild(span);
+  }
+});
+
+// ── Update left panel ─────────────────────────────────────────
+function updateLeft(idx) {
+  const c = couples[idx];
+  // fade out
+  activeCouple.classList.add('name-exit');
+  setTimeout(() => {
+    cIdx.textContent   = c.idx;
+    cName.innerHTML    = c.name;
+    cSub.textContent   = c.sub;
+    ccCur.textContent  = String(idx + 1).padStart(2, '0');
+    btnPrev.disabled   = idx === 0;
+    btnNext.disabled   = idx === TOTAL - 1;
+    // reset dots
+    dots.forEach((d, di) => d.classList.toggle('active', di === 0));
+    activeCouple.classList.remove('name-exit');
+  }, 300);
+}
+
+// ── Couple switch ─────────────────────────────────────────────
+function goTo(index) {
+  if (busy || index === current || index < 0 || index >= TOTAL) return;
+  busy = true;
+
+  const prev = current;
+  current = index;
+
+  stories[prev].classList.add('exiting');
+  stories[prev].classList.remove('active', 'entering');
+
+  setTimeout(() => {
+    stories[prev].classList.remove('exiting');
+    // reset scroll
+    stories[prev].scrollTop = 0;
+
+    stories[current].classList.add('active', 'entering');
+    setTimeout(() => {
+      stories[current].classList.remove('entering');
+      busy = false;
+    }, 700);
+  }, 500);
+
+  updateLeft(index);
+}
+
+// ── Track scroll position to update dots ──────────────────────
+stories.forEach((story, si) => {
+  story.addEventListener('scroll', () => {
+    if (si !== current) return;
+    const slides = story.querySelectorAll('.img-slide');
+    const scrollTop = story.scrollTop;
+    const h = story.clientHeight;
+    const imgIdx = Math.round(scrollTop / h);
+    dots.forEach((d, di) => d.classList.toggle('active', di === Math.min(imgIdx, 4)));
+  }, { passive: true });
+});
+
+// ── Arrow buttons ─────────────────────────────────────────────
+btnPrev.addEventListener('click', () => goTo(current - 1));
+btnNext.addEventListener('click', () => goTo(current + 1));
+
+// ── Keyboard ──────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') goTo(current + 1);
+  if (e.key === 'ArrowLeft')  goTo(current - 1);
+});
+
+// ── Init ──────────────────────────────────────────────────────
+updateLeft(0);
+</script>
+</body>
+</html>
