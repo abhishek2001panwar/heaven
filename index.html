@@ -182,7 +182,7 @@
 
       /* ─── NAV ─── */
       nav {
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
         right: 0;
@@ -191,16 +191,22 @@
         justify-content: space-between;
         align-items: center;
         padding: 30px 56px;
-        mix-blend-mode: difference;
+        background: transparent;
+        border-bottom: none;
       }
       .nav-logo {
         font-size: 18px;
         font-weight: 400;
         letter-spacing: 0.32em;
         text-transform: uppercase;
-        color: var(--fg);
+        color: #000000;
         text-decoration: none;
-
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+      }
+      .nav-logo:hover {
+        letter-spacing: 0.42em;
+        transform: scale(1.05);
       }
       .nav-links {
         display: flex;
@@ -211,13 +217,29 @@
         font-size: 9px;
         letter-spacing: 0.25em;
         text-transform: uppercase;
-        color: var(--fg);
+        color: #000000;
         text-decoration: none;
-        opacity: 0.38;
-        transition: opacity 0.3s;
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        padding-bottom: 6px;
+        display: inline-block;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #000000;
+        transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .nav-links a:hover {
-        opacity: 1;
+        transform: translateY(-2px);
+        letter-spacing: 0.35em;
+      }
+      .nav-links a:hover::after {
+        width: 100%;
       }
 
       /* ─── HERO ─── */
@@ -226,16 +248,103 @@
         height: 100vh;
         min-height: 600px;
         overflow: hidden;
-        background: #000;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-      #gl-canvas {
+      #three-canvas {
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
-        z-index: 6;
+        z-index: 2;
         pointer-events: none;
         display: block;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero-eyebrow {
+        font-size: 0.65rem;
+        letter-spacing: 0.45em;
+        text-transform: uppercase;
+        color: #000000;
+        margin-bottom: 2rem;
+        opacity: 0;
+        animation: fadeUp 1.2s 0.35s forwards;
+      }
+      .hero-title {
+        font-size: clamp(3.2rem, 11vw, 9rem);
+        font-weight: 300;
+        line-height: 0.9;
+        letter-spacing: -0.02em;
+        color: transparent;
+        -webkit-text-stroke: 1px #333131;
+        -webkit-text-fill-color: transparent;
+        text-transform: capitalize;
+        opacity: 0;
+        animation: fadeUp 1.3s 0.55s forwards;
+      }
+      .hero-title em {
+        font-style: italic;
+        text-transform: none;
+        color: transparent;
+        -webkit-text-stroke: 1px #000000;
+        -webkit-text-fill-color: transparent;
+      }
+      .hero-sub {
+        font-size: 0.92rem;
+        font-weight: 300;
+        letter-spacing: 0.2em;
+        color: #333333;
+        margin-top: 1.6rem;
+        text-transform: uppercase;
+        opacity: 0;
+        animation: fadeUp 1.25s 0.85s forwards;
+      }
+      .scroll-indicator {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        opacity: 0;
+        animation: fadeUp 1s 1.3s forwards;
+      }
+      .scroll-indicator span {
+        font-size: 0.55rem;
+        letter-spacing: 0.38em;
+        text-transform: uppercase;
+        color: #666666;
+      }
+      .scroll-line {
+        width: 1px;
+        height: 50px;
+        background: linear-gradient(to bottom, #000000, transparent);
+        animation: heroScrollPulse 2s ease-in-out infinite;
+      }
+      @keyframes heroScrollPulse {
+        0%,
+        100% {
+          opacity: 0.35;
+          transform: scaleY(0.85);
+        }
+        50% {
+          opacity: 1;
+          transform: scaleY(1);
+        }
       }
       .panels {
         position: absolute;
@@ -1714,6 +1823,36 @@
         font-style: italic;
         color: var(--silver);
       }
+      .phil-buttons {
+        display: flex;
+        gap: 24px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 48px;
+        opacity: 0;
+        animation: fadeUp 1s 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .phil-btn {
+        padding: 14px 36px;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--fg);
+        background: transparent;
+        border: 1.5px solid var(--fg);
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .phil-btn:hover {
+        background: var(--fg);
+        color: #000;
+        transform: translateY(-3px);
+        box-shadow: 0 12px 32px rgba(240, 237, 232, 0.12);
+      }
       @keyframes fadeUp {
         from {
           opacity: 0;
@@ -1986,7 +2125,7 @@
 
     <!-- NAV -->
     <nav>
-      <a href="#" class="nav-logo">House of  Heaven</a>
+      <a href="#" class="nav-logo">HOH</a>
       <ul class="nav-links">
         <li><a href="#services">Our couples</a></li>
         <li><a href="#work">Work</a></li>
@@ -1994,7 +2133,7 @@
       </ul>
     </nav>
 
-    <!-- HERO -->
+    <!-- HERO (OLD - COMMENTED AS REQUESTED)
     <section id="hero">
       <div class="panels" id="panels">
         <div class="panel">
@@ -2004,11 +2143,6 @@
             alt=""
           />
           <div class="panel-vignette"></div>
-          <!-- <span class="p-num">01</span>
-          <div class="p-label">
-            <span class="p-cat">Landscape</span>
-            <div class="p-title">Into the Mist</div>
-          </div> -->
         </div>
         <div class="panel">
           <img
@@ -2017,11 +2151,6 @@
             alt=""
           />
           <div class="panel-vignette"></div>
-          <!-- <span class="p-num">02</span>
-          <div class="p-label">
-            <span class="p-cat">Nature</span>
-            <div class="p-title">Golden Hour</div>
-          </div> -->
         </div>
         <div class="panel">
           <img
@@ -2030,17 +2159,27 @@
             alt=""
           />
           <div class="panel-vignette"></div>
-          <!-- <span class="p-num">03</span>
-          <div class="p-label">
-            <span class="p-cat">Seascape</span>
-            <div class="p-title">Still Waters</div>
-          </div> -->
         </div>
       </div>
       <canvas id="gl-canvas"></canvas>
       <div class="h-scroll" id="heroScroll">
         <div class="h-scroll-line"></div>
         Scroll
+      </div>
+    </section>
+    -->
+
+    <!-- HERO (FROM new.html) -->
+    <section id="hero">
+      <canvas id="three-canvas"></canvas>
+      <div class="hero-content">
+        <p class="hero-eyebrow">Photography Brand</p>
+        <h1 class="hero-title">Ho<em>use Of Heaven</em></h1>
+        <!-- <p class="hero-sub">Where light becomes legend</p> -->
+      </div>
+      <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
       </div>
     </section>
 
@@ -2500,6 +2639,10 @@
         <div class="phil-quote">
           Framing love <br /> light & everything in <em>  between.</em>
         </div>
+        <div class="phil-buttons">
+          <a href="#contact" class="phil-btn">Get in Touch</a>
+          <a href="#gallery" class="phil-btn">Our Gallery</a>
+        </div>
       </div>
     </section>
 
@@ -2600,14 +2743,14 @@
         </div>
         <div class="cred-divider"></div>
         <div class="cred-meta">
-          <div class="cred-meta-item"><span>Our Couple</span></div>
+          <div class="cred-meta-item"><a href="#services"><span>Our Couple</span></a></div>
           <div class="cred-meta-item">
-            <span>Portfolio</span>
+           <a href="#portfolio"><span>Portfolio</span></a>
           </div>
           <div class="cred-meta-item">
-            <span>Contact</span>
+            <a href="#contact"><span>Contact</span></a>
           </div>
-          <div class="cred-meta-item"><span>Work</span></div>
+          <div class="cred-meta-item"><a href="#work"><span>Work</span></a></div>
         </div>
       </div>
       <div class="cred-ticker">
@@ -2711,75 +2854,151 @@
         });
       });
 
-      /* ── HERO WEBGL ── */
+      /* ── HERO THREE.JS (FROM new.html) ── */
       (function () {
-        const canvas = document.getElementById("gl-canvas");
-        const gl = canvas.getContext("webgl", {
+        const canvas = document.getElementById("three-canvas");
+        if (!canvas || typeof THREE === "undefined") return;
+
+        const renderer = new THREE.WebGLRenderer({
+          canvas,
+          antialias: true,
           alpha: true,
-          premultipliedAlpha: false,
         });
-        if (!gl) return;
-        const rsz = () => {
-          canvas.width = canvas.offsetWidth * Math.min(devicePixelRatio, 2);
-          canvas.height = canvas.offsetHeight * Math.min(devicePixelRatio, 2);
-          gl.viewport(0, 0, canvas.width, canvas.height);
-        };
-        rsz();
-        window.addEventListener("resize", rsz);
-        const VS = `attribute vec2 a;varying vec2 v;void main(){v=a*.5+.5;gl_Position=vec4(a,0.,1.);}`;
-        const FS = `precision mediump float;varying vec2 v;uniform float t;uniform vec2 m;uniform float h;
-      vec3 p3(vec3 x){return mod(((x*34.)+1.)*x,289.);}
-      float sn(vec2 v){const vec4 C=vec4(.211324865,.366025404,-.577350269,.024390243);vec2 i=floor(v+dot(v,C.yy));vec2 x0=v-i+dot(i,C.xx);vec2 i1=x0.x>x0.y?vec2(1.,0.):vec2(0.,1.);vec4 x12=x0.xyxy+C.xxzz;x12.xy-=i1;i=mod(i,289.);vec3 p=p3(p3(i.y+vec3(0.,i1.y,1.))+i.x+vec3(0.,i1.x,1.));vec3 m2=max(.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.);m2=m2*m2*m2*m2;vec3 x2=fract(p*C.www)*2.-1.;vec3 hh=abs(x2)-.5;vec3 ox=floor(x2+.5);vec3 a0=x2-ox;m2*=1.79284291-.85373472*(a0*a0+hh*hh);vec3 g;g.x=a0.x*x0.x+hh.x*x0.y;g.yz=a0.yz*x12.xz+hh.yz*x12.yw;return 130.*dot(m2,g);}
-      void main(){float tt=t*.28;float n=(sn(v*2.8+vec2(tt,tt*.5))+sn(v*6.-vec2(tt*.8,tt))*.45+sn(v*1.3+vec2(-tt*.4,tt*.7))*.3)*(.008+h*.018);float s1=smoothstep(.006,0.,abs(v.x-.3333))*.025;float s2=smoothstep(.006,0.,abs(v.x-.6667))*.025;float sm=(s1+s2)*sin(v.y*30.-tt*5.)*(1.+h*1.2);float mr=sin(length(v-m)*44.-tt*6.)*exp(-length(v-m)*7.)*h*.032;float val=n+sm+mr;float a=smoothstep(.022,0.,abs(val))*.22+smoothstep(.01,0.,abs(val-.007))*.1;a*=smoothstep(0.,.28,v.x);gl_FragColor=vec4(.94,.93,.91,a);}`;
-        const mk = (t, s) => {
-          const sh = gl.createShader(t);
-          gl.shaderSource(sh, s);
-          gl.compileShader(sh);
-          return sh;
-        };
-        const p = gl.createProgram();
-        gl.attachShader(p, mk(gl.VERTEX_SHADER, VS));
-        gl.attachShader(p, mk(gl.FRAGMENT_SHADER, FS));
-        gl.linkProgram(p);
-        gl.useProgram(p);
-        const buf = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-        gl.bufferData(
-          gl.ARRAY_BUFFER,
-          new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]),
-          gl.STATIC_DRAW,
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 0);
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(
+          60,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          100,
         );
-        const aPos = gl.getAttribLocation(p, "a");
-        gl.enableVertexAttribArray(aPos);
-        gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
-        const uT = gl.getUniformLocation(p, "t"),
-          uM = gl.getUniformLocation(p, "m"),
-          uH = gl.getUniformLocation(p, "h");
-        gl.enable(gl.BLEND);
-        gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-        let mox = 0.5,
-          moy = 0.5,
-          hT = 0,
-          hC = 0;
-        const hero = document.getElementById("hero");
-        hero.addEventListener("mousemove", (e) => {
-          const r = hero.getBoundingClientRect();
-          mox = (e.clientX - r.left) / r.width;
-          moy = 1 - (e.clientY - r.top) / r.height;
-          hT = 1;
+        camera.position.z = 5;
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+        const pLight = new THREE.PointLight(0xc9a96e, 2, 20);
+        pLight.position.set(3, 3, 3);
+        scene.add(pLight);
+        const pLight2 = new THREE.PointLight(0x4a3520, 1.5, 15);
+        pLight2.position.set(-4, -2, 2);
+        scene.add(pLight2);
+
+        const imgUrls = [
+          "./images/portrait1.png",
+          "./images/portrait2.png",
+          "./images/portrait3.png",
+          "./images/portrait4.png",
+          "./images/portrait5.png",
+          "./images/portrait6.png",
+          "./images/portrait7.png",
+          "./images/heronew1.png",
+        ];
+
+        const loader = new THREE.TextureLoader();
+        const planes = [];
+        const configs = [
+          { x: -3.5, y: 1.2, z: -1.5, rx: -0.1, ry: 0.25, w: 1.4, h: 1.8 },
+          { x: 3.2, y: 1.0, z: -2.0, rx: 0.08, ry: -0.2, w: 1.2, h: 1.6 },
+          { x: -3.8, y: -1.4, z: -1.0, rx: 0.12, ry: 0.18, w: 1.3, h: 1.7 },
+          { x: 3.5, y: -1.2, z: -1.8, rx: -0.08, ry: -0.22, w: 1.5, h: 1.9 },
+          { x: -1.5, y: 2.8, z: -3.0, rx: 0.05, ry: 0.1, w: 1.1, h: 1.5 },
+          { x: 1.2, y: 2.6, z: -3.5, rx: -0.05, ry: -0.12, w: 1.0, h: 1.4 },
+          { x: -1.8, y: -2.8, z: -2.5, rx: 0.1, ry: 0.15, w: 1.2, h: 1.6 },
+          { x: 1.5, y: -2.6, z: -3.0, rx: -0.1, ry: -0.18, w: 1.1, h: 1.5 },
+        ];
+
+        configs.forEach((cfg, i) => {
+          loader.load(imgUrls[i % imgUrls.length], (texture) => {
+            const geo = new THREE.PlaneGeometry(cfg.w, cfg.h);
+            const mat = new THREE.MeshStandardMaterial({
+              map: texture,
+              transparent: true,
+              opacity: 0.85,
+              roughness: 0.3,
+              metalness: 0.1,
+            });
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.position.set(cfg.x, cfg.y, cfg.z);
+            mesh.rotation.set(cfg.rx, cfg.ry, (Math.random() - 0.5) * 0.2);
+            mesh.userData = {
+              ox: cfg.x,
+              oy: cfg.y,
+              speed: 0.3 + Math.random() * 0.4,
+              phase: Math.random() * Math.PI * 2,
+            };
+
+            const borderGeo = new THREE.EdgesGeometry(
+              new THREE.PlaneGeometry(cfg.w + 0.04, cfg.h + 0.04),
+            );
+            const borderMat = new THREE.LineBasicMaterial({
+              color: 0xc9a96e,
+              transparent: true,
+              opacity: 0.6,
+            });
+            mesh.add(new THREE.LineSegments(borderGeo, borderMat));
+
+            scene.add(mesh);
+            planes.push(mesh);
+          });
         });
-        hero.addEventListener("mouseleave", () => (hT = 0));
-        const t0 = performance.now();
-        (function fr(now) {
-          hC += (hT - hC) * 0.055;
-          gl.clearColor(0, 0, 0, 0);
-          gl.clear(gl.COLOR_BUFFER_BIT);
-          gl.uniform1f(uT, (now - t0) * 0.001);
-          gl.uniform2f(uM, mox, moy);
-          gl.uniform1f(uH, hC);
-          gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-          requestAnimationFrame(fr);
-        })(performance.now());
+
+        const particleGeo = new THREE.BufferGeometry();
+        const count = 300;
+        const positions = new Float32Array(count * 3);
+        for (let i = 0; i < count; i++) {
+          positions[i * 3] = (Math.random() - 0.5) * 20;
+          positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
+          positions[i * 3 + 2] = (Math.random() - 0.5) * 10 - 2;
+        }
+        particleGeo.setAttribute(
+          "position",
+          new THREE.BufferAttribute(positions, 3),
+        );
+        const particleMat = new THREE.PointsMaterial({
+          color: 0xc9a96e,
+          size: 0.04,
+          transparent: true,
+          opacity: 0.5,
+        });
+        scene.add(new THREE.Points(particleGeo, particleMat));
+
+        let mouseX = 0;
+        let mouseY = 0;
+        document.addEventListener("mousemove", (e) => {
+          mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+          mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+        });
+
+        window.addEventListener("resize", () => {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        const clock = new THREE.Clock();
+        function animate() {
+          requestAnimationFrame(animate);
+          const t = clock.getElapsedTime();
+
+          planes.forEach((p) => {
+            const { ox, oy, speed, phase } = p.userData;
+            p.position.y = oy + Math.sin(t * speed + phase) * 0.15;
+            p.position.x = ox + Math.cos(t * speed * 0.7 + phase) * 0.08;
+            p.rotation.z += Math.sin(t * speed * 0.3 + phase) * 0.0005;
+          });
+
+          camera.position.x += (mouseX * 0.8 - camera.position.x) * 0.03;
+          camera.position.y += (-mouseY * 0.5 - camera.position.y) * 0.03;
+          camera.lookAt(scene.position);
+
+          pLight.position.x = Math.sin(t * 0.5) * 4;
+          pLight.position.y = Math.cos(t * 0.4) * 3;
+
+          renderer.render(scene, camera);
+        }
+        animate();
       })();
       /* ── GALLERY ── */
       const gS = document.getElementById("gallery"),
