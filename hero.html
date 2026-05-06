@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>House Of Heaven</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+     
+      background: #f4f1eb;
+       overflow-y:scroll;
+  overflow-x:hidden;
+
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+      
+    }
+
+    .serif { font-family: 'Cormorant Garamond', serif; }
+   
+
+    .grain {
+      position: fixed; inset: 0;
+      pointer-events: none; opacity: .06; z-index: 9999;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    .hero-stroke {
+      color: transparent;
+      -webkit-text-stroke: 1.2px #111;
+      letter-spacing: -4px;
+    }
+
+    /* Hero section height drives scroll distance */
+    #heroSection {
+      position: relative;
+      height: 280vh;
+    }
+
+    /* Sticky panel — NO overflow:hidden so fixed card scales freely */
+    #heroSticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: visible;
+    }
+
+    /* Side image containers clip their own contents */
+    .img-clip { overflow: hidden; }
+
+    /* THE SCALING CARD — position:fixed, lives outside any clipping parent */
+    #centerImage {
+      position: fixed;
+      border-radius: 2px;
+      overflow: hidden;
+      z-index: 100;
+      will-change: transform;
+      transform-origin: center center;
+    }
+
+    #centerImage img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── RESPONSIVE PHOTO GRID ── */
+    #photoGrid {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 94%;
+      padding-bottom: 20px;
+    }
+
+    #photoGrid > div {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      align-items: end;
+    }
+
+    /* MOBILE: 1 column */
+    @media (max-width: 640px) {
+      #heroSection {
+        height: 180vh;
+      }
+      #photoGrid {
+        width: 90%;
+        padding-bottom: 16px;
+      }
+      #photoGrid > div {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      #heroText {
+        padding-top: 60px !important;
+      }
+      #heroText p {
+        font-size: 11px !important;
+        letter-spacing: 6px !important;
+        margin-bottom: 16px !important;
+      }
+      #leftImages, #leftCenter, #rightImages {
+        display: none;
+      }
+      #leftImages, #rightImages {
+        gap: 12px !important;
+      }
+    }
+
+    /* TABLET: 2 columns */
+    @media (min-width: 641px) and (max-width: 1024px) {
+      #heroSection {
+        height: 200vh;
+      }
+      #photoGrid {
+        width: 92%;
+        padding-bottom: 20px;
+      }
+      #photoGrid > div {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+      #heroText {
+        padding-top: 80px !important;
+      }
+      #heroText p {
+        font-size: 12px !important;
+        letter-spacing: 5px !important;
+        margin-bottom: 20px !important;
+      }
+      #leftImages { display: none; }
+      #leftCenter { display: none; }
+      #leftImages, #rightImages {
+        gap: 14px !important;
+      }
+    }
+
+    /* DESKTOP: 4 columns */
+    @media (min-width: 1025px) {
+      #heroSection {
+        height: 280vh;
+      }
+      #photoGrid {
+        width: 94%;
+        max-width: 1700px;
+        padding-bottom: 40px;
+      }
+      #photoGrid > div {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+      }
+      #heroText {
+        padding-top: 128px !important;
+      }
+      #heroText p {
+        font-size: 13px !important;
+        letter-spacing: 8px !important;
+        margin-bottom: 24px !important;
+      }
+      #leftImages, #rightImages {
+        gap: 24px !important;
+      }
+    }
+
+    /* FX */
+    .glow {
+      position: absolute; width: 500px; height: 500px; border-radius: 999px;
+      background: radial-gradient(circle, rgba(255,255,255,.18), transparent 70%);
+      filter: blur(50px); mix-blend-mode: screen; z-index: 2;
+    }
+    .light-line {
+      position: absolute; top: 0; width: 1px; height: 100%;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,.5), transparent);
+      opacity: .35; z-index: 3;
+    }
+    .particle {
+      position: absolute; width: 8px; height: 8px; border-radius: 999px;
+      background: white; box-shadow: 0 0 20px rgba(255,255,255,.6); z-index: 4;
+    }
+    .shimmer {
+      position: absolute; inset: -200%;
+      background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,.12) 50%, transparent 60%);
+      transform: rotate(8deg); z-index: 1; pointer-events: none;
+    }
+    .vignette {
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,.45) 100%);
+      z-index: 5; pointer-events: none;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* NEXT SECTION */
+    #nextSection {
+      position: relative; z-index: 10;
+      height: 100vh; background: #0a0a0a;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    #weddingTitle { opacity: 0; transform: translateY(40px); }
+    #weddingTag   { opacity: 0; letter-spacing: 12px; }
+    #weddingLine  {
+      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 1px; height: 0; background: rgba(255,255,255,.2);
+    }
+     .hero-title {
+        font-size: clamp(1.8rem, 5vw, 9rem);
+        font-weight: 300;
+        line-height: 0.9;
+        letter-spacing: -0.02em;
+        color: transparent;
+        -webkit-text-stroke: .5px #333131;
+        -webkit-text-fill-color: transparent;
+        text-transform: capitalize;
+        opacity: 0;
+        animation: fadeUp 1.3s 0.55s forwards;
+      }
+      .hero-title em {
+        font-style: italic;
+        text-transform: none;
+        color: transparent;
+        -webkit-text-stroke: .5px #000000;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* ── RESPONSIVE IMAGE HEIGHTS ── */
+      /* Mobile */
+      @media (max-width: 640px) {
+        #leftImages .img-clip:nth-child(1) { height: 120px; }
+        #leftImages .img-clip:nth-child(2) { height: 100px; }
+        #leftCenter .img-clip { height: 180px; }
+        #rightImages .img-clip:nth-child(1) { height: 140px; }
+        #rightImages .img-clip:nth-child(2) { height: 160px; }
+      }
+
+      /* Tablet */
+      @media (min-width: 641px) and (max-width: 1024px) {
+        #leftImages .img-clip:nth-child(1) { height: 160px; }
+        #leftImages .img-clip:nth-child(2) { height: 140px; }
+        #leftCenter .img-clip { height: 280px; }
+        #leftCenter { padding-bottom: 60px !important; }
+        #rightImages .img-clip:nth-child(1) { height: 150px; }
+        #rightImages .img-clip:nth-child(2) { height: 240px; }
+      }
+
+      /* Desktop */
+      @media (min-width: 1025px) {
+        #leftImages .img-clip:nth-child(1) { height: 240px; }
+        #leftImages .img-clip:nth-child(2) { height: 200px; }
+        #leftCenter .img-clip { height: 420px; }
+        #leftCenter { padding-bottom: 80px !important; }
+        #rightImages .img-clip:nth-child(1) { height: 270px; }
+        #rightImages .img-clip:nth-child(2) { height: 360px; }
+      }
+
+      /* ── NEXT SECTION RESPONSIVE ── */
+      #nextSection {
+        height: 100vh;
+        background: #0a0a0a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: 20px;
+      }
+
+      @media (max-width: 640px) {
+        #weddingTitle {
+          font-size: clamp(2rem, 8vw, 5rem) !important;
+        }
+      }
+
+      @media (min-width: 641px) and (max-width: 1024px) {
+        #weddingTitle {
+          font-size: clamp(3rem, 10vw, 7rem) !important;
+        }
+      }
+
+      @media (min-width: 1025px) {
+        #weddingTitle {
+          font-size: 90px !important;
+        }
+      }
+  </style>
+</head>
+
+<body>
+<div class="grain"></div>
+
+<!-- HERO -->
+<section id="heroSection">
+  <div id="heroSticky">
+
+  
+
+    <!-- HERO TEXT -->
+    <div id="heroText" style="text-align:center;position:relative;z-index:50;">
+      <p style="text-transform:uppercase;color:#737373;margin-bottom:24px;" class="text-xs md:text-sm">Photography Brand</p>
+      <h1 class="hero-title serif">Ho<em>use Of Heaven</em></h1>
+    </div>
+
+    <!-- PHOTO GRID -->
+    <div id="photoGrid">
+      <div>
+        <!-- LEFT -->
+        <div id="leftImages" style="display:flex;flex-direction:column;gap:inherit;">
+          <div class="img-clip" style="border-radius:25px;">
+            <img src="./images/portrait1.png" class="film" style="width:100%;height:100%;object-fit:cover;"/>
+          </div>
+          <div class="img-clip" style="border-radius:25px;">
+            <img src="./images/portrait2.png" class="film" style="width:100%;height:100%;object-fit:cover;"/>
+          </div>
+        </div>
+
+        <!-- LEFT CENTER -->
+        <div id="leftCenter" style="">
+          <div class="img-clip" style="border-radius:25px;">
+            <img src="./images/heronew.png" class="film" style="width:100%;height:100%;object-fit:cover;"/>
+          </div>
+        </div>
+
+        <!-- CENTER PLACEHOLDER — invisible, just reserves grid space for JS measurement -->
+        <div id="centerWrap">
+          <div id="centerPlaceholder" style="aspect-ratio:16/9;width:100%;visibility:hidden;"></div>
+        </div>
+
+        <!-- RIGHT -->
+        <div id="rightImages" style="display:flex;flex-direction:column;gap:inherit;">
+          <div class="img-clip" style="border-radius:25px;">
+            <img src="./images/portrait3.png" class="film" style="width:100%;height:100%;object-fit:cover;"/>
+          </div>
+          <div class="img-clip" style="border-radius:25px;">
+            <img src="./images/portrait5.png" class="film" style="width:100%;height:100%;object-fit:cover;"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FIXED SCALING CARD — outside all sections so nothing clips it -->
+<div id="centerImage">
+  <img id="mainImage" src="../images/seeing1.png" class="film"/>
+  <div class="glow"></div>
+  <div class="light-line" style="left:20%"></div>
+  <div class="light-line" style="left:50%"></div>
+  <div class="light-line" style="left:80%"></div>
+  <div class="particle" style="top:20%;left:18%"></div>
+  <div class="particle" style="top:65%;left:78%"></div>
+  <div class="particle" style="top:40%;left:85%"></div>
+  <div class="particle" style="top:78%;left:25%"></div>
+  <div class="shimmer"></div>
+  <div class="vignette"></div>
+</div>
+
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* AMBIENT FX */
+gsap.to(".glow",        { x:100, y:60,   duration:8,  repeat:-1, yoyo:true, ease:"sine.inOut" });
+gsap.to(".particle",    { y:-30, stagger:.2, duration:3, repeat:-1, yoyo:true, ease:"sine.inOut" });
+gsap.to(".light-line",  { opacity:.9, stagger:.2, duration:2, repeat:-1, yoyo:true });
+gsap.to(".shimmer",     { x:"40%", duration:4, repeat:-1, ease:"none" });
+gsap.to(".hero-stroke", { letterSpacing:"-1px", duration:3, repeat:-1, yoyo:true, ease:"sine.inOut" });
+
+/* ── POSITION the fixed card exactly over the placeholder ── */
+function placeCard() {
+  const ph   = document.getElementById('centerPlaceholder');
+  const card = document.getElementById('centerImage');
+  const r    = ph.getBoundingClientRect();
+
+  gsap.set(card, {
+    top:          r.top,
+    left:         r.left,
+    width:        r.width,
+    height:       r.height,
+    x:            0,
+    y:            0,
+    scale:        1,
+    borderRadius: 30
+  });
+}
+
+/* ── BUILD SCROLL ANIMATION ── */
+function buildTimeline() {
+  ScrollTrigger.getAll().forEach(t => t.kill());
+  placeCard();
+
+  const ph  = document.getElementById('centerPlaceholder');
+  const r   = ph.getBoundingClientRect();
+  const vw  = window.innerWidth;
+  const vh  = window.innerHeight;
+
+  /* scale needed to cover full viewport from card's size */
+  const targetScale = Math.max(vw / r.width, vh / r.height) * 1.005;
+
+  /* translate card center → screen center */
+  const tx = vw / 2 - (r.left + r.width  / 2);
+  const ty = vh / 2 - (r.top  + r.height / 2);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#heroSection",
+      start:   "top top",
+      end:     "bottom bottom",
+      scrub:   1.4,
+      /* hide the fixed card once hero scroll is done */
+      onLeave:       () => gsap.set("#centerImage", { display:"none" }),
+      onEnterBack:   () => gsap.set("#centerImage", { display:"block" })
+    }
+  });
+
+  /* fade out surrounding elements */
+  tl.to("#heroText",    { y:-100, opacity:0, ease:"power2.in" }, 0);
+  tl.to("#leftImages",  { x:-260, opacity:0, ease:"power2.in" }, 0.05);
+  tl.to("#leftCenter",  { x:-130, opacity:0, ease:"power2.in" }, 0.05);
+  tl.to("#rightImages", { x: 260, opacity:0, ease:"power2.in" }, 0.05);
+
+  /* SCALE from card position to full screen */
+  tl.to("#centerImage", {
+    scale:        targetScale,
+    x:            tx,
+    y:            ty,
+    borderRadius: 0,
+    ease:         "expo.inOut"
+  }, 0.15);
+
+  tl.to("#mainImage", { scale:1.08, ease:"expo.inOut" }, 0.15);
+}
+
+window.addEventListener('load', () => {
+  requestAnimationFrame(() => requestAnimationFrame(buildTimeline));
+});
+
+window.addEventListener('resize', () => {
+  gsap.set(["#heroText","#leftImages","#leftCenter","#rightImages"], { clearProps:"all" });
+  buildTimeline();
+});
+
+/* NEXT SECTION ENTRANCE */
+ScrollTrigger.create({
+  trigger: "#nextSection",
+  start:   "top 80%",
+  onEnter: () => {
+    gsap.to("#weddingTitle", { opacity:1, y:0,                duration:1.4, ease:"expo.out" });
+    gsap.to("#weddingTag",   { opacity:1, letterSpacing:"18px", duration:1.8, ease:"expo.out", delay:.2 });
+    gsap.to("#weddingLine",  { height:"40%",                  duration:1.6, ease:"expo.out", delay:.5 });
+  }
+});
+</script>
+</body>
+</html>
