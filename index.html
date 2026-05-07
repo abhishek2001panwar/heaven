@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>House of Heaven - Photography Studio</title>
+  
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com" /> -->
     <style>
       /* ─── TOKENS ─── */
@@ -31,7 +32,7 @@
         background: var(--bg);
         color: var(--fg);
         font-weight: 300;
-        cursor: none;
+
         overflow-x: hidden;
       }
       body::after {
@@ -44,7 +45,7 @@
       }
 
       /* ─── CURSOR ─── */
-      #cur {
+      /* #cur {
         position: fixed;
         width: 8px;
         height: 8px;
@@ -73,7 +74,7 @@
           width 0.4s,
           height 0.4s,
           border-color 0.25s;
-      }
+      } */
       body:has(a:hover, button:hover) #cur {
         width: 14px;
         height: 14px;
@@ -199,7 +200,7 @@
         font-weight: 400;
         letter-spacing: 0.32em;
         text-transform: uppercase;
-        color: #000000;
+        color: #8a8278;
         text-decoration: none;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
@@ -217,7 +218,7 @@
         font-size: 9px;
         letter-spacing: 0.25em;
         text-transform: uppercase;
-        color: #000000;
+        color: #8a8278;
         text-decoration: none;
         transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
@@ -231,7 +232,7 @@
         left: 0;
         width: 0;
         height: 2px;
-        background: #000000;
+        background: #8a8278;
         transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .nav-links a:hover {
@@ -738,7 +739,6 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        filter: saturate(0.32) brightness(0.72) contrast(1.1);
         will-change: transform;
       }
       .ks-word-wrap {
@@ -912,8 +912,9 @@
         color: rgba(240, 237, 232, 0.3);
       }
       .srv-head-title {
+        font-family: serif;
         font-size: clamp(36px, 5vw, 62px);
-        font-weight: 300;
+        font-weight: 200;
         line-height: 1;
         letter-spacing: -0.01em;
         text-align: right;
@@ -922,10 +923,21 @@
         font-style: italic;
         color: var(--silver);
       }
+
+      .pg-title {
+        font-size: clamp(42px, 3vw, 80px);
+        font-weight: 300;
+        font-style: italic;
+        color: var(--fg);
+        line-height: 0.9;
+        letter-spacing: -0.01em;
+        opacity: 0;
+        animation: fadeUp 1.1s ease 0.35s forwards;
+      }
       #srv-img-card {
         position: fixed;
         width: 300px;
-        height: 210px;
+        height: 270px;
         pointer-events: none;
         z-index: 500;
         opacity: 0;
@@ -934,6 +946,7 @@
           opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
           transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         overflow: hidden;
+        border-radius: 8px;
       }
       #srv-img-card.visible {
         opacity: 1;
@@ -1121,11 +1134,9 @@
         transition:
           transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
           filter 0.7s;
-        filter: saturate(0.4) contrast(1.08) brightness(0.85);
       }
       .g-card:hover img {
         transform: scale(1.05);
-        filter: saturate(0.75) brightness(0.95);
       }
       .g-card-over {
         position: absolute;
@@ -1175,8 +1186,17 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: radial-gradient(circle at 30% 50%, rgba(200, 200, 200, 0.03) 0%, transparent 50%),
-                    radial-gradient(circle at 70% 50%, rgba(200, 200, 200, 0.02) 0%, transparent 50%);
+        background:
+          radial-gradient(
+            circle at 30% 50%,
+            rgba(200, 200, 200, 0.03) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 70% 50%,
+            rgba(200, 200, 200, 0.02) 0%,
+            transparent 50%
+          );
         pointer-events: none;
         z-index: 0;
         will-change: opacity;
@@ -1203,7 +1223,11 @@
         right: -60px;
         width: 300px;
         height: 300px;
-        background: radial-gradient(circle, rgba(200, 200, 200, 0.08) 0%, transparent 70%);
+        background: radial-gradient(
+          circle,
+          rgba(200, 200, 200, 0.08) 0%,
+          transparent 70%
+        );
         border-radius: 50%;
         pointer-events: none;
         will-change: transform;
@@ -1248,10 +1272,18 @@
         opacity: 0;
         animation: fadeInUp 0.8s ease-out forwards;
       }
-      .form-row .form-group:nth-child(1) { animation-delay: 0.5s; }
-      .form-row .form-group:nth-child(2) { animation-delay: 0.6s; }
-      .form-row:nth-of-type(2) .form-group:nth-child(1) { animation-delay: 0.7s; }
-      .form-row:nth-of-type(2) .form-group:nth-child(2) { animation-delay: 0.8s; }
+      .form-row .form-group:nth-child(1) {
+        animation-delay: 0.5s;
+      }
+      .form-row .form-group:nth-child(2) {
+        animation-delay: 0.6s;
+      }
+      .form-row:nth-of-type(2) .form-group:nth-child(1) {
+        animation-delay: 0.7s;
+      }
+      .form-row:nth-of-type(2) .form-group:nth-child(2) {
+        animation-delay: 0.8s;
+      }
       .form-group label {
         display: block;
         font-size: 8px;
@@ -1356,7 +1388,11 @@
         left: -40px;
         width: 280px;
         height: 280px;
-        background: radial-gradient(circle, rgba(200, 200, 200, 0.06) 0%, transparent 70%);
+        background: radial-gradient(
+          circle,
+          rgba(200, 200, 200, 0.06) 0%,
+          transparent 70%
+        );
         border-radius: 50%;
         pointer-events: none;
         will-change: transform;
@@ -1377,7 +1413,11 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(135deg, rgba(200, 200, 200, 0.05) 0%, transparent 50%);
+        background: linear-gradient(
+          135deg,
+          rgba(200, 200, 200, 0.05) 0%,
+          transparent 50%
+        );
         pointer-events: none;
         z-index: 2;
       }
@@ -1400,10 +1440,18 @@
         animation: fadeInUp 0.8s ease-out forwards;
         will-change: transform;
       }
-      .detail-block:nth-child(1) { animation-delay: 0.5s; }
-      .detail-block:nth-child(2) { animation-delay: 0.6s; }
-      .detail-block:nth-child(3) { animation-delay: 0.7s; }
-      .detail-block:nth-child(4) { animation-delay: 0.8s; }
+      .detail-block:nth-child(1) {
+        animation-delay: 0.5s;
+      }
+      .detail-block:nth-child(2) {
+        animation-delay: 0.6s;
+      }
+      .detail-block:nth-child(3) {
+        animation-delay: 0.7s;
+      }
+      .detail-block:nth-child(4) {
+        animation-delay: 0.8s;
+      }
       .detail-label {
         font-size: 8px;
         letter-spacing: 0.25em;
@@ -1563,7 +1611,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        filter: saturate(0.35) contrast(1.1) brightness(0.8);
+        filter: saturate(1) contrast(1.1) brightness(0.8);
         transition:
           filter 1.4s,
           transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1721,21 +1769,21 @@
         margin-top: 5px;
       }
       .ct2-img {
-  position: relative;
-}
+        position: relative;
+      }
 
-.ct2-img::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.7)
-  );
-  z-index: 2;
-  pointer-events: none;
-}
+      .ct2-img::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.4),
+          rgba(0, 0, 0, 0.7)
+        );
+        z-index: 2;
+        pointer-events: none;
+      }
 
       /* ─── PHILOSOPHY ─── */
       #philosophy {
@@ -1812,8 +1860,8 @@
         padding: 0 40px;
       }
       .phil-quote {
-        font-size: clamp(34px, 5.5vw, 70px);
-        font-weight: 300;
+        font-size: clamp(30px, 2vw, 50px);
+        font-weight: 200;
         line-height: 1.1;
         letter-spacing: -0.01em;
         opacity: 0;
@@ -1870,17 +1918,39 @@
         position: relative;
         overflow: hidden;
         padding: 130px 56px 90px;
+        border-top: 1px solid var(--line);
       }
       #credits::before {
         content: "";
         position: absolute;
         inset: 0;
-        background: radial-gradient(
-          ellipse 70% 55% at 50% 100%,
-          rgba(200, 200, 200, 0.04),
-          transparent 65%
-        );
+        background:
+          radial-gradient(
+            ellipse 70% 55% at 50% 100%,
+            rgba(200, 200, 200, 0.04),
+            transparent 65%
+          ),
+          radial-gradient(
+            ellipse 40% 40% at 20% 50%,
+            rgba(200, 200, 200, 0.02),
+            transparent 50%
+          );
         pointer-events: none;
+      }
+      #credits::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--silver),
+          transparent
+        );
+        opacity: 0.2;
       }
       .ap-deco {
         position: absolute;
@@ -1986,8 +2056,9 @@
       .cred-divider {
         width: 1px;
         height: 64px;
-        background: linear-gradient(var(--silver), transparent);
+        background: linear-gradient(180deg, var(--silver) 0%, transparent 100%);
         margin: 48px 0;
+        box-shadow: 0 0 24px rgba(200, 200, 200, 0.1);
       }
       .cred-meta {
         display: flex;
@@ -1997,6 +2068,46 @@
         text-transform: uppercase;
         color: rgba(240, 237, 232, 0.15);
         text-align: center;
+      }
+      .cred-meta-item {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .cred-meta-item:hover {
+        transform: translateY(-6px);
+      }
+      .cred-meta-item a {
+        color: var(--fg);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 300;
+        letter-spacing: 0.04em;
+        text-transform: none;
+        font-style: italic;
+        position: relative;
+        display: block;
+        padding: 6px 12px;
+        transition: all 0.3s ease;
+        margin-top: 6px;
+      }
+      .cred-meta-item a::before {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--fg);
+        transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .cred-meta-item a:hover {
+        color: var(--silver);
+      }
+      .cred-meta-item a:hover::before {
+        width: 100%;
       }
       .cred-meta-item span {
         display: block;
@@ -2015,6 +2126,21 @@
         overflow: hidden;
         width: 100vw;
         margin-left: -56px;
+        position: relative;
+      }
+      .cred-ticker::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--silver),
+          transparent
+        );
       }
       .cred-ticker-inner {
         display: flex;
@@ -2028,6 +2154,13 @@
         letter-spacing: 0.3em;
         text-transform: uppercase;
         color: rgba(240, 237, 232, 0.08);
+        font-weight: 300;
+        position: relative;
+      }
+      .cred-ticker-item::before {
+        content: "◆";
+        margin-right: 30px;
+        opacity: 0.3;
       }
       @keyframes tickR {
         from {
@@ -2062,19 +2195,33 @@
         #credits {
           padding: 70px 22px;
         }
-        footer {
-          padding: 20px 22px;
-          flex-direction: column;
-          gap: 5px;
-          text-align: center;
+        .cred-studio {
+          font-size: clamp(36px, 8vw, 56px);
+        }
+        .cred-divider {
+          height: 48px;
+          margin: 32px 0;
         }
         .cred-meta {
           flex-direction: column;
           gap: 20px;
           align-items: center;
         }
+        .cred-meta-item a {
+          font-size: 12px;
+          padding: 4px 8px;
+        }
         .cred-ticker {
           margin-left: -22px;
+        }
+        .cred-ticker-item {
+          font-size: 8px;
+        }
+        footer {
+          padding: 20px 22px;
+          flex-direction: column;
+          gap: 5px;
+          text-align: center;
         }
         .ct2-imgs {
           flex-direction: column;
@@ -2111,283 +2258,306 @@
         body {
           font-size: 14px;
         }
-        
+
         /* Hero Section */
         #hero {
           height: 70vh;
           min-height: 500px;
           padding: 0 20px;
         }
-        
+
         .hero-content {
           padding: 0 20px;
         }
-        
+
         .hero-eyebrow {
           font-size: 0.55rem;
           letter-spacing: 0.3em;
           margin-bottom: 1rem;
         }
-        
+
         .hero-title {
           font-size: clamp(1.8rem, 5vw, 4rem);
           line-height: 0.85;
         }
-        
+
         .hero-sub {
           font-size: 0.75rem;
           letter-spacing: 0.15em;
           margin-top: 1rem;
         }
-        
+
         .scroll-indicator {
           bottom: 1.5rem;
           gap: 0.3rem;
         }
-        
+
         .scroll-indicator span {
           font-size: 0.45rem;
         }
-        
+
         .scroll-line {
           height: 30px;
         }
-        
+
         /* Contact Section */
         #contact {
           padding: 40px 20px;
           min-height: auto;
         }
-        
+
         .contact-container {
           gap: 30px;
         }
-        
+
         .ct-label {
           font-size: 8px;
           letter-spacing: 0.2em;
           margin-bottom: 16px;
         }
-        
+
         .ct-title {
           font-size: clamp(24px, 6vw, 36px);
           margin-bottom: 24px;
         }
-        
+
         .form-group {
           margin-bottom: 16px;
         }
-        
+
         .form-row {
           grid-template-columns: 1fr;
           gap: 16px;
         }
-        
+
         .contact-form::before {
           display: none;
         }
-        
+
         .contact-map {
           height: 250px;
           margin-top: 20px;
         }
-        
+
         .contact-details {
           display: flex;
           flex-direction: column;
           gap: 24px;
         }
-        
+
         /* Philosophy Section */
         #philosophy {
           height: auto;
           min-height: 60vh;
           padding: 40px 20px;
         }
-        
+
         .phil-content {
           padding: 0 15px;
           max-width: 100%;
         }
-        
+
         .phil-quote {
           font-size: clamp(20px, 5vw, 36px);
           line-height: 1.15;
         }
-        
+
         .phil-buttons {
           gap: 12px;
           margin-top: 32px;
           flex-direction: column;
           align-items: center;
         }
-        
+
         .phil-btn {
           padding: 12px 24px;
           font-size: 11px;
           width: 100%;
           max-width: 200px;
         }
-        
+
         .phil-orb {
           display: none;
         }
-        
+
         /* Motion/Animation Sections */
         #kinetic-split {
           grid-template-columns: 1fr;
           height: auto;
           gap: 20px;
         }
-        
-        .ks-left, .ks-right {
+
+        .ks-left,
+        .ks-right {
           height: 50vw;
         }
-        
+
         /* General Typography */
         nav {
           padding: 12px 16px;
         }
-        
+
         /* Footer */
         footer {
           padding: 12px 16px;
           font-size: 8px;
         }
       }
-      
+
       /* TABLET: 641px to 1024px */
       @media (min-width: 641px) and (max-width: 1024px) {
         body {
           font-size: 15px;
         }
-        
+
         /* Hero Section */
         #hero {
           height: 85vh;
           min-height: 550px;
           padding: 0 30px;
         }
-        
+
         .hero-content {
           padding: 0 30px;
         }
-        
+
         .hero-eyebrow {
-          font-size: 0.60rem;
+          font-size: 0.6rem;
           letter-spacing: 0.38em;
           margin-bottom: 1.5rem;
         }
-        
+
         .hero-title {
           font-size: clamp(2.5rem, 8vw, 6rem);
           line-height: 0.88;
         }
-        
+
         .hero-sub {
           font-size: 0.85rem;
           letter-spacing: 0.18em;
           margin-top: 1.2rem;
         }
-        
+
         .scroll-indicator {
           bottom: 2rem;
           gap: 0.4rem;
         }
-        
+
         .scroll-indicator span {
-          font-size: 0.50rem;
+          font-size: 0.5rem;
         }
-        
+
         .scroll-line {
           height: 40px;
         }
-        
+
         /* Contact Section */
         #contact {
           padding: 60px 40px;
           min-height: auto;
         }
-        
+
         .contact-container {
           gap: 40px;
         }
-        
+
         .ct-label {
           font-size: 9px;
           letter-spacing: 0.25em;
           margin-bottom: 20px;
         }
-        
+
         .ct-title {
           font-size: clamp(28px, 5vw, 44px);
           margin-bottom: 32px;
         }
-        
+
         .form-group {
           margin-bottom: 22px;
         }
-        
+
         .form-row {
           grid-template-columns: repeat(2, 1fr);
           gap: 20px;
         }
-        
+
         .contact-map {
           height: 320px;
           margin-top: 24px;
         }
-        
+
         /* Philosophy Section */
         #philosophy {
           height: auto;
           min-height: 70vh;
           padding: 60px 40px;
         }
-        
+
         .phil-content {
           padding: 0 30px;
           max-width: 650px;
         }
-        
+
         .phil-quote {
           font-size: clamp(28px, 6vw, 50px);
           line-height: 1.12;
         }
-        
+
         .phil-buttons {
           gap: 18px;
           margin-top: 40px;
           flex-wrap: wrap;
         }
-        
+
         .phil-btn {
           padding: 13px 32px;
           font-size: 12px;
         }
-        
+
         /* Motion/Animation Sections */
         #kinetic-split {
           grid-template-columns: 1fr 1fr;
           height: auto;
           gap: 30px;
         }
-        
-        .ks-left, .ks-right {
+
+        .ks-left,
+        .ks-right {
           height: 45vw;
         }
-        
+
         /* Navigation & Footer */
         nav {
           padding: 16px 30px;
         }
-        
+
         footer {
           padding: 18px 30px;
           font-size: 9px;
         }
+
+        /* Credits - Tablet */
+        #credits {
+          padding: 100px 40px;
+        }
+
+        .cred-studio {
+          font-size: clamp(56px, 10vw, 100px);
+        }
+
+        .cred-meta {
+          gap: 50px;
+        }
+
+        .cred-meta-item a {
+          font-size: 13px;
+        }
+
+        .cred-ticker {
+          margin-left: -40px;
+        }
       }
-      
+
       /* DESKTOP: 1025px and above */
       @media (min-width: 1025px) {
         /* Hero Section - already optimized for desktop */
@@ -2395,50 +2565,50 @@
           height: 100vh;
           padding: 0 56px;
         }
-        
+
         .hero-content {
           padding: 0 56px;
         }
-        
+
         .hero-eyebrow {
           font-size: 0.65rem;
         }
-        
+
         .hero-title {
           font-size: clamp(3.2rem, 11vw, 9rem);
         }
-        
+
         .hero-sub {
           font-size: 0.92rem;
         }
-        
+
         /* Contact Section - desktop optimized */
         #contact {
           padding: 100px 56px;
         }
-        
+
         .contact-container {
           gap: 80px;
         }
-        
+
         .ct-title {
           font-size: clamp(32px, 4vw, 56px);
         }
-        
+
         /* Philosophy Section */
         #philosophy {
           height: 100vh;
           padding: 60px 56px;
         }
-        
+
         .phil-content {
           padding: 0 40px;
         }
-        
+
         .phil-quote {
           font-size: clamp(34px, 5.5vw, 70px);
         }
-        
+
         .phil-buttons {
           gap: 24px;
         }
@@ -2446,8 +2616,8 @@
     </style>
   </head>
   <body>
-    <div id="cur"></div>
-    <div id="cur-r"></div>
+    <!-- <div id="cur"></div>
+    <div id="cur-r"></div> -->
 
     <!-- LOADER -->
     <div id="loader">
@@ -2522,40 +2692,20 @@
       </div>
     </section> -->
     <iframe
-  src="hero.html"
-  scrolling="yes"
-  style="
-    width:100%;
-    height:100vh;
-    border:none;
-
-  "
-></iframe>
-
-    
+      src="hero.html"
+      scrolling="yes"
+      style="width: 100%; height: 100vh; border: none"
+    ></iframe>
 
     <section id="services">
       <div id="srv-img-card">
-        <img
-          src="./images/couple1.png"
-          data-srv="0"
-          class="active"
-          alt=""
-        />
-        <img
-          src="./images/couple2.png"
-          data-srv="1"
-          alt=""
-        />
-        <img
-          src="./images/couple3.png"
-          data-srv="2"
-          alt=""
-        />
+        <img src="./images/couple1.png" data-srv="0" class="active" alt="" />
+        <img src="./images/couple2.png" data-srv="1" alt="" />
+        <img src="./images/couple3.png" data-srv="2" alt="" />
       </div>
       <div class="srv-header rv">
-        <div class="srv-label"></div>
-        <div class="srv-head-title">Our<br />couples</div>
+        <!-- <div class="srv-head-title">Our  couples</div> -->
+        <div class="pg-title">Our Couples</div>
       </div>
       <div class="srv-list">
         <div class="srv-row rv" data-srv="0">
@@ -2584,7 +2734,7 @@
               />
             </svg>
           </div> -->
-            <!-- <span class="srv-tag">Cinematic · Documentary · Reel</span> -->
+          <!-- <span class="srv-tag">Cinematic · Documentary · Reel</span> -->
         </div>
         <div class="srv-row rv" data-srv="2" style="transition-delay: 0.1s">
           <span class="srv-num">/03</span
@@ -2610,19 +2760,16 @@
         ><span class="mq-it"> Photography</span
         ><span class="mq-it">Photography</span
         ><span class="mq-it"> Photography</span
-        ><span class="mq-it">Photography</span
-        >
+        ><span class="mq-it">Photography</span>
         <span class="mq-it"> Photography</span
         ><span class="mq-it">Photography</span
         ><span class="mq-it"> Photography</span
         ><span class="mq-it">Photography</span
         ><span class="mq-it"> Photography</span
-        ><span class="mq-it">Photography</span
-        >
+        ><span class="mq-it">Photography</span>
       </div>
     </div>
 
-    
     <!-- COUPLE TEXT -->
     <section id="couple-text">
       <div class="ct2-stroke-wrap">
@@ -2637,43 +2784,30 @@
       </div>
       <div class="ct2-imgs">
         <div class="ct2-img">
-          <img
-            src="../images/overlay1.png"
-            alt=""
-          />
+          <img src="../images/overlay1.png" alt="" />
         </div>
         <div class="ct2-img">
-          <img
-            src="../images/overlay2.png"
-            alt=""
-          />
+          <img src="../images/overlay2.png" alt="" />
         </div>
       </div>
-     
     </section>
 
     <!-- ══ NEW: TAPE DRAG SCROLL ══ -->
-    <section id="tape-scroll">
+    <!-- <section id="tape-scroll">
       <div class="tape-inner" id="tapeInner">
         <div class="tape-card">
           <img
             src="../images/drag1.png"
             alt=""
           />
-          <!-- <div class="tape-card-info">
-            <div class="tape-card-title">Vast Wilderness</div>
-            <div class="tape-card-meta">Landscape · 2024</div>
-          </div> -->
+        
         </div>
         <div class="tape-card">
           <img
             src="../images/drag2.png"
             alt=""
           />
-          <!-- <div class="tape-card-info">
-            <div class="tape-card-title">Bloom</div>
-            <div class="tape-card-meta">Macro · 2024</div>
-          </div> -->
+         
         </div>
         <div class="tape-card">
           <img
@@ -2682,10 +2816,7 @@
           />
             alt=""
           />
-          <!-- <div class="tape-card-info">
-            <div class="tape-card-title">City Fog</div>
-            <div class="tape-card-meta">Urban · 2023</div>
-          </div> -->
+         
         </div>
         <div class="tape-card">
           <img
@@ -2694,10 +2825,7 @@
           />
             alt=""
           />
-          <!-- <div class="tape-card-info">
-            <div class="tape-card-title">Wingspan</div>
-            <div class="tape-card-meta">Nature · 2023</div>
-          </div> -->
+        
         </div>
         <div class="tape-card">
           <img
@@ -2705,30 +2833,21 @@
             alt=""
             alt=""
           />
-          <!-- <div class="tape-card-info">
-            <div class="tape-card-title">Still Lake</div>
-            <div class="tape-card-meta">Landscape · 2023</div>
-          </div> -->
+         
         </div>
         <div class="tape-card">
           <img
             src="../images/drag6.png"
             alt=""
           />
-          <!-- <div class="tape-card-info">
-            <div class="tape-card-title">Granite Peak</div>
-            <div class="tape-card-meta">Mountain · 2022</div>
-          </div> -->
+         
         </div>
         <div class="tape-card">
           <img
             src="../images/drag7.png"
             alt=""
           />
-          <!-- <div class="tape-card-info">
-            <div class="tape-card-title">Valley Floor</div>
-            <div class="tape-card-meta">Aerial · 2022</div>
-          </div> -->
+        
         </div>
         <div class="tape-card">
           <img
@@ -2737,19 +2856,20 @@
           />
             alt=""
           />
-          <!-- <div class="tape-card-info">
-            <div class="tape-card-title">Dusk Shore</div>
-            <div class="tape-card-meta">Seascape · 2022</div>
-          </div> -->
+        
         </div>
       </div>
       <div class="tape-drag-hint">← drag to explore →</div>
-    </section>
+    </section> -->
+
+    <iframe
+      src="dragger.html"
+      scrolling="yes"
+      style="width: 100%; height: 100vh; border: none"
+    ></iframe>
 
     <!-- ══ NEW: PHOTO TICKER (two rows) ══ -->
-    <section id="photo-ticker">
-     
-    </section>
+    <section id="photo-ticker"></section>
 
     <!-- ══ NEW: KINETIC SPLIT ══ -->
     <section id="kinetic-split">
@@ -2768,187 +2888,178 @@
           alt=""
         />
         <div class="ks-vignette"></div>
-        
       </div>
     </section>
 
     <!-- ══ NEW: PHOTO GRID ══ -->
-    <section id="photo-grid">
+    <!-- <section id="photo-grid">
       <div id="work" class="pg-header rv">
-        <div class="pg-label">Portfolio </div>
+        <div class="pg-label">Portfolio</div>
         <div class="pg-title">Selected Work</div>
       </div>
       <div class="pg-grid">
         <div class="pg-item">
-          <img
-            src="../images/seeing.png"
-            alt=""
-          />
-          <!-- <div class="pg-item-tag">
-            <div class="pg-item-tag-title">Vast Wilderness</div>
-            <div class="pg-item-tag-cat">Landscape · 2024</div>
-          </div> -->
+          <img src="../images/seeing.png" alt="" />
+         
         </div>
         <div class="pg-item" style="transition-delay: 0.07s">
-          <img
-            src="../images/seeing1.png"
-            alt=""
-          />
-          <!-- <div class="pg-item-tag">
-            <div class="pg-item-tag-title">Solitude</div>
-            <div class="pg-item-tag-cat">Portrait · 2024</div>
-          </div> -->
+          <img src="../images/seeing1.png" alt="" />
+         
         </div>
         <div class="pg-item" style="transition-delay: 0.14s">
-          <img
-            src="../images/hero1.png"
-            alt=""
-          />
-          <!-- <div class="pg-item-tag">
-            <div class="pg-item-tag-title">City Fog</div>
-            <div class="pg-item-tag-cat">Urban · 2023</div>
-          </div> -->
+          <img src="../images/hero1.png" alt="" />
+         
         </div>
-        <!-- <div class="pg-item" style="transition-delay: 0.21s">
-          <img
-            src="../images/hero3.png"
-            alt=""
-          />
-          <div class="pg-item-tag">
-            <div class="pg-item-tag-title">Horizon</div>
-            <div class="pg-item-tag-cat">Seascape · 2023</div>
-          </div>
-        </div> -->
+       
         <div class="pg-item" style="transition-delay: 0.28s">
-          <img
-            src="../images/hero2.png"
-            alt=""
-          />
-          <!-- <div class="pg-item-tag">
-            <div class="pg-item-tag-title">First Light</div>
-            <div class="pg-item-tag-cat">Nature · 2022</div>
-          </div> -->
+          <img src="../images/hero2.png" alt="" />
+         
         </div>
         <div class="pg-item" style="transition-delay: 0.35s">
-          <img
-            src="../images/random1.png"
-            alt=""
-          />
-          <!-- <div class="pg-item-tag">
-            <div class="pg-item-tag-title">Bloom</div>
-            <div class="pg-item-tag-cat">Macro · 2022</div>
-          </div> -->
+          <img src="../images/random1.png" alt="" />
+         
         </div>
         <div class="pg-item" style="transition-delay: 0.42s">
-          <img
-            src="../images/random2.png"
-            alt=""
-          />
-          <!-- <div class="pg-item-tag">
-            <div class="pg-item-tag-title">Still Lake</div>
-            <div class="pg-item-tag-cat">Landscape · 2022</div>
-          </div> -->
+          <img src="../images/random2.png" alt="" />
+         
         </div>
         <div class="pg-item" style="transition-delay: 0.49s">
-          <img
-            src=""
-            alt=""
-          />
-          <!-- <div class="pg-item-tag">
-            <div class="pg-item-tag-title">Granite Peak</div>
-            <div class="pg-item-tag-cat">Mountain · 2022</div>
-          </div> -->
+          <img src="" alt="" />
+        
         </div>
         <div class="pg-item" style="transition-delay: 0.56s">
-          <img
-            src=""
-            alt=""
-          />
-          <!-- <div class="pg-item-tag">
-            <div class="pg-item-tag-title">Wingspan</div>
-            <div class="pg-item-tag-cat">Wildlife · 2021</div>
-          </div> -->
+          <img src="" alt="" />
+         
         </div>
       </div>
-    </section>
+    </section> -->
+    <!-- <iframe
+  
+  src="photo.html"
+  scrolling="yes"
+  style="
+    width:100%;
+    height:90vh;
+    border:none;
+    display:block;
+    overflow:hidden;
+  "
+></iframe> -->
+<!-- PARENT PAGE -->
+<!-- PARENT PAGE -->
+<iframe
+  id="portfolioFrame"
+  src="photo.html"
+  style="
+    width:100%;
+    border:none;
+    display:block;
+    overflow:hidden;
+  "
+  scrolling="no"
+></iframe>
 
+<script>
+const iframe = document.getElementById("portfolioFrame");
+
+  function updateIframeHeight() {
+    const doc =
+      iframe.contentWindow.document.documentElement;
+
+    iframe.style.height =
+      doc.scrollHeight + "px";
+  }
+
+  iframe.onload = () => {
+
+    // wait until ALL GSAP + images finish
+    setTimeout(() => {
+      updateIframeHeight();
+
+      // refresh GSAP triggers INSIDE iframe
+      iframe.contentWindow.ScrollTrigger.refresh();
+
+    }, 1200);
+
+    // resize on screen resize
+    window.addEventListener("resize", () => {
+      updateIframeHeight();
+
+      iframe.contentWindow.ScrollTrigger.refresh();
+    });
+
+    // observe content changes
+    const observer = new ResizeObserver(() => {
+      updateIframeHeight();
+
+      iframe.contentWindow.ScrollTrigger.refresh();
+    });
+
+    observer.observe(
+      iframe.contentWindow.document.body
+    );
+  };
+</script>
+
+
+   
     <!-- SERVICES -->
-    
 
     <!-- GALLERY H-SCROLL -->
     <div id="gallery" style="height: 270vh">
       <div class="g-sticky" id="gSticky">
         <div class="g-head rv">
           <div class="g-head-label">Gallery</div>
-          <div class="g-head-title"> Where light meets emotion,<br />and every frame tells a story.</div>
+          <div class="g-head-title">
+            Where light meets emotion,<br />and every frame tells a story.
+          </div>
         </div>
         <div class="g-track" id="gTrack">
           <div style="flex-shrink: 0; width: 230px"></div>
           <div class="g-card">
-            <img
-              src="../images/portrait1.png"
-              alt=""
-            />
+            <img src="../images/portrait1.png" alt="" />
             <!-- <div class="g-card-over">
               <div class="g-card-title">Autumn Reverie</div>
               <div class="g-card-sub">Landscape · 2024</div>
             </div> -->
           </div>
           <div class="g-card">
-            <img
-              src="../images/portrait2.png"
-              alt=""
-            />
+            <img src="../images/portrait2.png" alt="" />
             <!-- <div class="g-card-over">
               <div class="g-card-title">Solitude</div>
               <div class="g-card-sub">Portrait · 2024</div>
             </div> -->
           </div>
           <div class="g-card">
-            <img
-              src="../images/portrait3.png"
-              alt=""
-            />
+            <img src="../images/portrait3.png" alt="" />
             <!-- <div class="g-card-over">
               <div class="g-card-title">City Fog</div>
               <div class="g-card-sub">Urban · 2023</div>
             </div> -->
           </div>
           <div class="g-card">
-            <img
-              src="../images/portrait4.png"
-              alt=""
-            />
+            <img src="../images/portrait4.png" alt="" />
             <!-- <div class="g-card-over">
               <div class="g-card-title">Horizon</div>
               <div class="g-card-sub">Seascape · 2023</div>
             </div> -->
           </div>
           <div class="g-card">
-            <img
-              src="../images/portrait5.png"
-              alt=""
-            />
+            <img src="../images/portrait5.png" alt="" />
             <!-- <div class="g-card-over">
               <div class="g-card-title">First Light</div>
               <div class="g-card-sub">Nature · 2022</div>
             </div> -->
           </div>
           <div class="g-card">
-            <img
-              src="../images/portrait6.png"
-              alt=""
-            />
+            <img src="../images/portrait6.png" alt="" />
             <!-- <div class="g-card-over">
               <div class="g-card-title">Bloom</div>
               <div class="g-card-sub">Macro · 2022</div>
             </div> -->
           </div>
-            <div class="g-card">
-            <img
-              src="../images/portrait7.png"
-              alt=""
-            />
+          <div class="g-card">
+            <img src="../images/portrait7.png" alt="" />
             <!-- <div class="g-card-over">
               <div class="g-card-title">Bloom</div>
               <div class="g-card-sub">Macro · 2022</div>
@@ -2960,25 +3071,16 @@
     </div>
 
     <!-- CONTACT -->
-   
-  
-
 
     <!-- COUPLE WIDE -->
     <section id="couple-wide">
-      <img
-        class="cw-img"
-        id="cwImg"
-        src="../images/house.png"
-        alt=""
-      />
+      <img class="cw-img" id="cwImg" src="../images/house.png" alt="" />
       <div class="cw-vignette"></div>
       <div class="cw-stroke-head">
         <span class="cw-stroke">HOUSE</span
         ><span class="cw-stroke solid">of</span
         ><span class="cw-stroke">HEAVEN</span>
       </div>
-      
     </section>
 
     <!-- PHILOSOPHY -->
@@ -2988,7 +3090,8 @@
       <div class="phil-orb"></div>
       <div class="phil-content">
         <div class="phil-quote">
-          Framing love <br /> light & everything in <em>  between.</em>
+          Framing love <br />
+          light & everything in <em> between.</em>
         </div>
         <div class="phil-buttons">
           <a href="#contact" class="phil-btn">Get in Touch</a>
@@ -2997,54 +3100,93 @@
       </div>
     </section>
 
-     <section id="contact">
+    <section id="contact">
       <div class="contact-container">
         <div class="contact-form rv">
           <span class="ct-label">Get in touch</span>
-          <h2 class="ct-title">Let's create<br /><em>something beautiful.</em></h2>
+          <h2 class="ct-title">
+            Let's create<br /><em>something beautiful.</em>
+          </h2>
           <form id="contactForm">
             <div class="form-row">
               <div class="form-group">
                 <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Your name" required>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Your name"
+                  required
+                />
               </div>
               <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="your@email.com"
+                  required
+                />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label for="phone">Phone</label>
-                <input type="tel" id="phone" name="phone" placeholder="+33 (0)1 00 00 00 00">
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="+33 (0)1 00 00 00 00"
+                />
               </div>
               <div class="form-group">
                 <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject" placeholder="Project type" required>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  placeholder="Project type"
+                  required
+                />
               </div>
             </div>
             <div class="form-group">
               <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Tell us about your project..."
+                required
+              ></textarea>
             </div>
             <button type="submit" class="ct-btn">
               Send Message
               <svg width="16" height="9" viewBox="0 0 18 10" fill="none">
-                <path d="M0 5H16M12 1l4 4-4 4" stroke="currentColor" stroke-width="1" />
+                <path
+                  d="M0 5H16M12 1l4 4-4 4"
+                  stroke="currentColor"
+                  stroke-width="1"
+                />
               </svg>
             </button>
           </form>
         </div>
         <div class="contact-info rv" style="animation-delay: 0.1s">
           <div class="contact-map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9915867578573!2d2.2922926!3d48.8566139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d877537645%3A0x50601ff3d735f0c0!banglore%2C%20France!5e0!3m2!1sen!2sus!4v1640000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9915867578573!2d2.2922926!3d48.8566139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d877537645%3A0x50601ff3d735f0c0!banglore%2C%20France!5e0!3m2!1sen!2sus!4v1640000000000"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
           <div class="contact-details">
             <div class="detail-block">
               <span class="detail-label">Location</span>
               <div class="detail-content">
                 Banglore<br />
-               India
+                India
               </div>
             </div>
             <!-- <div class="detail-block">
@@ -3094,14 +3236,18 @@
         </div>
         <div class="cred-divider"></div>
         <div class="cred-meta">
-          <div class="cred-meta-item"><a href="#services"><span>Our Couple</span></a></div>
           <div class="cred-meta-item">
-           <a href="#portfolio"><span>Portfolio</span></a>
+            <a href="#services">Our Couple</a>
+          </div>
+          <div class="cred-meta-item">
+            <a href="#portfolio"><span>Portfolio</span></a>
           </div>
           <div class="cred-meta-item">
             <a href="#contact"><span>Contact</span></a>
           </div>
-          <div class="cred-meta-item"><a href="#work"><span>Work</span></a></div>
+          <div class="cred-meta-item">
+            <a href="#work"><span>Work</span></a>
+          </div>
         </div>
       </div>
       <div class="cred-ticker">
@@ -3113,46 +3259,23 @@
           ><span class="cred-ticker-item">Photography</span
           ><span class="cred-ticker-item">Photography</span
           ><span class="cred-ticker-item">Photography</span
-          ><span class="cred-ticker-item">Photography</span
-          >
-         <span class="cred-ticker-item">Photography</span
-          ><span class="cred-ticker-item">Photography</span
+          ><span class="cred-ticker-item">Photography</span>
+          <span class="cred-ticker-item">Photography</span
           ><span class="cred-ticker-item">Photography</span
           ><span class="cred-ticker-item">Photography</span
           ><span class="cred-ticker-item">Photography</span
           ><span class="cred-ticker-item">Photography</span
           ><span class="cred-ticker-item">Photography</span
           ><span class="cred-ticker-item">Photography</span
-          >
+          ><span class="cred-ticker-item">Photography</span>
         </div>
       </div>
     </section>
-
-       <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
-
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-      
       /* ── CURSOR ── */
-      const cur = document.getElementById("cur"),
-        curR = document.getElementById("cur-r");
-      let mx = 0,
-        my = 0,
-        rx = 0,
-        ry = 0;
-      document.addEventListener("mousemove", (e) => {
-        mx = e.clientX;
-        my = e.clientY;
-      });
-      (function t() {
-        rx += (mx - rx) * 0.12;
-        ry += (my - ry) * 0.12;
-        cur.style.left = mx + "px";
-        cur.style.top = my + "px";
-        curR.style.left = rx + "px";
-        curR.style.top = ry + "px";
-        requestAnimationFrame(t);
-      })();
 
       /* ── LOADER ── */
       window.addEventListener("load", () =>
@@ -3162,6 +3285,7 @@
         ),
       );
 
+     
       /* ── SERVICES ── */
       const card = document.getElementById("srv-img-card"),
         cardImgs = card.querySelectorAll("img"),
@@ -3408,47 +3532,47 @@
         );
 
       /* ── TAPE DRAG ── */
-      (function () {
-        const el = document.getElementById("tapeInner");
-        let isDown = false,
-          startX = 0,
-          scrollLeft = 0,
-          velX = 0,
-          prevX = 0,
-          animId;
-        el.addEventListener("mousedown", (e) => {
-          isDown = true;
-          startX = e.pageX - el.offsetLeft;
-          scrollLeft = el._scroll || 0;
-          cancelAnimationFrame(animId);
-          prevX = e.pageX;
-        });
-        document.addEventListener("mouseup", () => {
-          if (!isDown) return;
-          isDown = false;
-          // momentum
-          (function momentum() {
-            velX *= 0.92;
-            if (Math.abs(velX) < 0.5) return;
-            el._scroll = (el._scroll || 0) + velX;
-            el.style.transform = `translateX(${-Math.max(0, el._scroll)}px)`;
-            animId = requestAnimationFrame(momentum);
-          })();
-        });
-        document.addEventListener("mousemove", (e) => {
-          if (!isDown) return;
-          e.preventDefault();
-          velX = e.pageX - prevX;
-          prevX = e.pageX;
-          const x = e.pageX - el.offsetLeft;
-          const walk = (x - startX) * 1.2;
-          el._scroll = Math.max(
-            0,
-            Math.min(scrollLeft - walk, el.scrollWidth - el.offsetWidth),
-          );
-          el.style.transform = `translateX(${-el._scroll}px)`;
-        });
-      })();
+      // (function () {
+      //   const el = document.getElementById("tapeInner");
+      //   let isDown = false,
+      //     startX = 0,
+      //     scrollLeft = 0,
+      //     velX = 0,
+      //     prevX = 0,
+      //     animId;
+      //   el.addEventListener("mousedown", (e) => {
+      //     isDown = true;
+      //     startX = e.pageX - el.offsetLeft;
+      //     scrollLeft = el._scroll || 0;
+      //     cancelAnimationFrame(animId);
+      //     prevX = e.pageX;
+      //   });
+      //   document.addEventListener("mouseup", () => {
+      //     if (!isDown) return;
+      //     isDown = false;
+      //     // momentum
+      //     (function momentum() {
+      //       velX *= 0.92;
+      //       if (Math.abs(velX) < 0.5) return;
+      //       el._scroll = (el._scroll || 0) + velX;
+      //       el.style.transform = `translateX(${-Math.max(0, el._scroll)}px)`;
+      //       animId = requestAnimationFrame(momentum);
+      //     })();
+      //   });
+      //   document.addEventListener("mousemove", (e) => {
+      //     if (!isDown) return;
+      //     e.preventDefault();
+      //     velX = e.pageX - prevX;
+      //     prevX = e.pageX;
+      //     const x = e.pageX - el.offsetLeft;
+      //     const walk = (x - startX) * 1.2;
+      //     el._scroll = Math.max(
+      //       0,
+      //       Math.min(scrollLeft - walk, el.scrollWidth - el.offsetWidth),
+      //     );
+      //     el.style.transform = `translateX(${-el._scroll}px)`;
+      //   });
+      // })();
 
       /* ── STROKE TEXT REVEAL ── */
       const strokeObs = new IntersectionObserver(
@@ -3570,30 +3694,31 @@
       document.querySelectorAll(".rv").forEach((el) => obs.observe(el));
 
       /* ── CONTACT PARALLAX EFFECT ── */
-      const contactSection = document.getElementById('contact');
+      const contactSection = document.getElementById("contact");
       if (contactSection) {
-        const contactForm = contactSection.querySelector('.contact-form');
-        const contactInfo = contactSection.querySelector('.contact-info');
-        const contactMap = contactSection.querySelector('.contact-map iframe');
-        
+        const contactForm = contactSection.querySelector(".contact-form");
+        const contactInfo = contactSection.querySelector(".contact-info");
+        const contactMap = contactSection.querySelector(".contact-map iframe");
+
         // Mouse parallax effect
-        let mouseX = 0, mouseY = 0;
-        document.addEventListener('mousemove', (e) => {
+        let mouseX = 0,
+          mouseY = 0;
+        document.addEventListener("mousemove", (e) => {
           if (!contactSection.getBoundingClientRect().top < 100) return;
-          mouseX = (e.clientX / window.innerWidth) - 0.5;
-          mouseY = (e.clientY / window.innerHeight) - 0.5;
+          mouseX = e.clientX / window.innerWidth - 0.5;
+          mouseY = e.clientY / window.innerHeight - 0.5;
         });
 
         // Scroll parallax animation
         let scrollPos = 0;
-        window.addEventListener('scroll', () => {
+        window.addEventListener("scroll", () => {
           const rect = contactSection.getBoundingClientRect();
           const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-          
+
           if (isVisible) {
             scrollPos = (window.innerHeight - rect.top) / window.innerHeight;
             scrollPos = Math.max(0, Math.min(1, scrollPos));
-            
+
             // Subtle parallax on form
             if (contactForm) {
               const offsetX = mouseX * 15 * scrollPos;
@@ -3601,7 +3726,7 @@
               const scrollOffset = (scrollPos - 0.5) * 8;
               contactForm.style.transform = `translate(${offsetX}px, ${offsetY + scrollOffset}px)`;
             }
-            
+
             // Inverse parallax on info
             if (contactInfo) {
               const offsetX = mouseX * -12 * scrollPos;
@@ -3609,10 +3734,10 @@
               const scrollOffset = (scrollPos - 0.5) * -6;
               contactInfo.style.transform = `translate(${offsetX}px, ${offsetY + scrollOffset}px)`;
             }
-            
+
             // Subtle zoom on map
             if (contactMap) {
-              const scale = 1 + (scrollPos * 0.05);
+              const scale = 1 + scrollPos * 0.05;
               contactMap.style.transform = `scale(${scale}) translateY(${scrollPos * 10}px)`;
             }
           }
@@ -3624,13 +3749,15 @@
           time += 0.005;
           const rect = contactSection.getBoundingClientRect();
           const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-          
+
           if (isVisible) {
             // Subtle floating on decorative elements
-            const floats = contactSection.querySelectorAll('.contact-form::before, .contact-info::before');
+            const floats = contactSection.querySelectorAll(
+              ".contact-form::before, .contact-info::before",
+            );
             floats.forEach((el, i) => {
               const float = Math.sin(time + i) * 2;
-              if (el.parentElement.classList.contains('contact-form')) {
+              if (el.parentElement.classList.contains("contact-form")) {
                 el.style.transform = `translateY(${float}px) translateX(${Math.cos(time + i * 2) * 3}px)`;
               } else {
                 el.style.transform = `translateY(${-float}px) translateX(${Math.cos(time + i * 2) * -3}px)`;
@@ -3642,21 +3769,24 @@
         floatAnimation();
       }
 
-        const lenis = new Lenis({
-    duration: 1.1,
-    smooth: true,
-    direction: 'vertical',
-    gestureDirection: 'vertical',
-    smoothTouch: false
-  });
+      const lenis = new Lenis({
+        duration: 1.1,
+        smooth: true,
+        direction: "vertical",
+        gestureDirection: "vertical",
+        smoothTouch: false,
+      });
 
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
 
-  requestAnimationFrame(raf);
+      requestAnimationFrame(raf);
+
+      
     </script>
+
   
   </body>
 </html>
